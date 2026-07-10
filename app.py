@@ -45,7 +45,9 @@ def checar_senha() -> bool:
         return False
     senha = st.text_input("Senha de acesso", type="password")
     if senha:
-        if hmac.compare_digest(senha, APP_PASSWORD):
+        # .strip() tolera espaços colados no fim; .encode() compara bytes
+        # (evita erro com acento/aspas curvas coladas no secret).
+        if hmac.compare_digest(senha.strip().encode(), APP_PASSWORD.encode()):
             st.session_state["autenticado"] = True
             st.rerun()
         else:
