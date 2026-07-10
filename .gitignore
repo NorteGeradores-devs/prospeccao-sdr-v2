@@ -1,0 +1,22 @@
+# Segredos e credenciais
+.env
+.streamlit/secrets.toml
+
+# Cache e artefatos
+.cache/
+*.xlsx
+*.csv
+!/.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# SO / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

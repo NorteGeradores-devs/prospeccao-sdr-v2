@@ -1,0 +1,10 @@
+# Config do Streamlit (versionável — NÃO coloque segredos aqui; use secrets.toml)
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#F59E0B"

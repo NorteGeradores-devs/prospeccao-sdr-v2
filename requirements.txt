@@ -1,0 +1,8 @@
+# Limites inferiores (compatível com Python 3.11–3.14). Para o deploy no
+# Streamlit Cloud, fixe as versões exatas geradas por `pip freeze` se preferir.
+requests>=2.32
+pandas>=2.2
+python-dotenv>=1.0
+streamlit>=1.40
+openpyxl>=3.1
+pyshp>=2.3
