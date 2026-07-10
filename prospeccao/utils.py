@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
+from datetime import date, datetime
 
 from config import CNAE_SEGMENTOS
 
@@ -98,6 +99,26 @@ def parse_dinheiro(valor) -> float:
 def uf_valida(uf: str | None) -> str:
     uf = (uf or "").strip().upper()
     return uf if re.fullmatch(r"[A-Z]{2}", uf) else ""
+
+
+def dias_ate_data(valor: str | None) -> int | None:
+    """Dias entre hoje e uma data (PNCP/Sympla). Negativo = já passou; None se
+    não der para interpretar. Aceita ISO (2026-07-16T10:00) e BR (dd/mm/aaaa)."""
+    if not valor:
+        return None
+    s = str(valor).strip()
+    parsers = (
+        lambda x: datetime.fromisoformat(x),
+        lambda x: datetime.strptime(x, "%d/%m/%Y %H:%M:%S"),
+        lambda x: datetime.strptime(x, "%d/%m/%Y"),
+        lambda x: datetime.strptime(x[:10], "%Y-%m-%d"),
+    )
+    for parse in parsers:
+        try:
+            return (parse(s).date() - date.today()).days
+        except (ValueError, TypeError):
+            continue
+    return None
 
 
 def chave_dedup(cnpj: str, nome: str, municipio: str, uf: str, url: str = "") -> str:

@@ -129,6 +129,31 @@ CNAE_ALVO_BUSCA = [
 # Situação cadastral desejada (Receita Federal): 02 = ATIVA
 SITUACAO_ATIVA = {"02", "ATIVA"}
 
+# Peso por segmento (fit com geração de energia): quem depende mais de energia
+# própria/backup pontua mais. Ajuste livre conforme a estratégia comercial.
+SEGMENTO_PESO = {
+    "Mineração": 20,
+    "Petróleo e Gás": 20,
+    "Construção Civil": 18,
+    "Construção - Infraestrutura": 18,
+    "Construção - Instalações": 16,
+    "Saúde / Hospitais": 18,
+    "TI / Data Centers": 18,
+    "Energia / Utilities": 16,
+    "Indústria de Alimentos": 14,
+    "Agronegócio": 14,
+    "Telecom": 14,
+    "Eventos e Cultura": 14,
+    "Eventos e Lazer": 14,
+    "Hotelaria": 12,
+    "Varejo / Supermercados": 12,
+    "Setor Público / Licitação": 12,
+}
+SEGMENTO_PESO_PADRAO = 10          # segmento reconhecido, mas fora da lista fina
+
+# Urgência: licitação/evento com data próxima vira prioridade do SDR.
+URGENCIA_DIAS = 10                 # ≤ isso = bônus alto; ≤ 30 = bônus menor
+
 # Limiar de score para marcar um lead como "quente".
 SCORE_QUENTE = 65
 SCORE_MORNO = 40

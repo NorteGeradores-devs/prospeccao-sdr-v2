@@ -78,6 +78,8 @@ def main():
         return
 
     saida = Path(args.saida)
+    if saida.parent and not saida.parent.exists():
+        saida.parent.mkdir(parents=True, exist_ok=True)   # cria a pasta de saída
     dados = export.para_excel(df) if saida.suffix.lower() == ".xlsx" else export.para_csv(df)
     saida.write_bytes(dados)
     print(f">> Salvo em {saida.resolve()}")

@@ -4,6 +4,7 @@
 
 # Cache e artefatos
 .cache/
+saidas/
 *.xlsx
 *.csv
 !/.env.example

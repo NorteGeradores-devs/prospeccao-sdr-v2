@@ -9,6 +9,7 @@ from prospeccao.scoring import pontuar
 from prospeccao.utils import (
     chave_dedup,
     cnpj_valido,
+    dias_ate_data,
     formatar_cnpj,
     limpar_telefone,
     normalizar_cnae,
@@ -93,4 +94,28 @@ def test_pncp_dedup_por_edital_nao_por_orgao():
 def test_scoring_fonte_combinada_usa_maior_peso():
     # mesclado: max(PESO google_places=10, cnpj=12) = 12, nunca o default 8
     lead = pontuar(Lead(fonte="google_places+cnpj", nome="X"))
-    assert any("(+12)" in m for m in lead.motivos_score)
+    assert any("fonte google_places+cnpj (+12)" in m for m in lead.motivos_score)
+
+
+def test_dias_ate_data():
+    from datetime import date, timedelta
+    assert dias_ate_data((date.today() + timedelta(days=5)).isoformat()) == 5
+    assert dias_ate_data("2026-07-16T10:00") is not None      # ISO com hora
+    assert dias_ate_data("31/12/2020") < 0                    # já passou
+    assert dias_ate_data("") is None
+    assert dias_ate_data("lixo") is None
+
+
+def test_scoring_segmento_tiered():
+    # mineração vale mais que varejo no bônus de segmento
+    minerio = pontuar(Lead(fonte="sigmine", nome="X", segmento="Mineração"))
+    varejo = pontuar(Lead(fonte="cnpj", nome="Y", segmento="Varejo / Supermercados"))
+    assert any("Mineração (+20)" in m for m in minerio.motivos_score)
+    assert any("Varejo / Supermercados (+12)" in m for m in varejo.motivos_score)
+
+
+def test_scoring_urgencia_prazo_proximo():
+    from datetime import date, timedelta
+    perto = (date.today() + timedelta(days=3)).isoformat()
+    lead = pontuar(Lead(fonte="pncp", nome="Edital", uf="AM", data_evento=perto))
+    assert any("prazo em 3d (+12)" in m for m in lead.motivos_score)

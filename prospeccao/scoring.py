@@ -8,10 +8,14 @@ from __future__ import annotations
 from config import (
     SCORE_MORNO,
     SCORE_QUENTE,
+    SEGMENTO_PESO,
+    SEGMENTO_PESO_PADRAO,
     UF_PRIORITARIAS,
     UF_SECUNDARIAS,
+    URGENCIA_DIAS,
 )
 from prospeccao.models import Lead
+from prospeccao.utils import dias_ate_data
 
 PESO_FONTE = {
     "pncp": 30,            # licitação com objeto "gerador" = intenção explícita
@@ -33,8 +37,9 @@ def pontuar(lead: Lead) -> Lead:
     motivos.append(f"fonte {lead.fonte} (+{peso})")
 
     if lead.segmento:
-        score += 15
-        motivos.append(f"segmento‑alvo: {lead.segmento} (+15)")
+        peso_seg = SEGMENTO_PESO.get(lead.segmento, SEGMENTO_PESO_PADRAO)
+        score += peso_seg
+        motivos.append(f"segmento {lead.segmento} (+{peso_seg})")
 
     uf = (lead.uf or "").upper()
     if uf in UF_PRIORITARIAS:
@@ -72,6 +77,15 @@ def pontuar(lead: Lead) -> Lead:
     elif sit and "ATIVA" not in sit:
         score -= 15
         motivos.append(f"situação '{lead.situacao_cadastral}' (-15)")
+
+    # Urgência: prazo próximo (licitação/evento) = priorizar contato agora.
+    dias = dias_ate_data(lead.data_evento)
+    if dias is not None and 0 <= dias <= URGENCIA_DIAS:
+        score += 12
+        motivos.append(f"prazo em {dias}d (+12)")
+    elif dias is not None and URGENCIA_DIAS < dias <= 30:
+        score += 6
+        motivos.append(f"prazo em {dias}d (+6)")
 
     score = max(0, min(100, score))
     lead.score = score
