@@ -8,6 +8,7 @@ contrato de compra/locação de gerador a ser disputado.
 from __future__ import annotations
 
 import logging
+import random
 import time
 
 from prospeccao.http import HttpClient
@@ -20,7 +21,7 @@ BASE = "https://pncp.gov.br/api/search/"
 PORTAL = "https://pncp.gov.br"
 
 MAX_PAGINAS = 8        # teto de páginas por termo (evita paginação profunda)
-PAUSA_SEGUNDOS = 0.25  # cortesia entre requisições p/ não tomar rate-limit
+PAUSA_SEGUNDOS = 0.5   # cortesia entre requisições p/ não tomar rate-limit
 
 
 def buscar(http: HttpClient, keywords: list[str], ufs: list[str] | None = None,
@@ -51,8 +52,9 @@ def _buscar_termo(http, termo, ufs, status, limite, vistos) -> list[Lead]:
         }
         if status:
             params["status"] = status
-        if pagina > 1:
-            time.sleep(PAUSA_SEGUNDOS)
+        # Pausa com jitter antes de CADA página (inclui a 1ª de cada termo):
+        # amortece o rate-limit agressivo do PNCP (ConnectionReset 10054).
+        time.sleep(PAUSA_SEGUNDOS + random.uniform(0, 0.4))
         data = http.get_json(BASE, params=params)
         items = data.get("items") or []
         if not items:

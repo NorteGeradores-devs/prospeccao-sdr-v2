@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import time
+import uuid
 from pathlib import Path
 from typing import Any, Optional
 
@@ -39,10 +40,14 @@ def get(namespace: str, chave: str, ttl_horas: int = CACHE_TTL_HORAS) -> Optiona
 
 def set(namespace: str, chave: str, valor: Any) -> None:
     caminho = _caminho(namespace, chave)
+    # Escrita atômica: grava num .tmp único e renomeia (os.replace é atômico no
+    # mesmo FS). Evita que um leitor concorrente leia um JSON pela metade.
+    tmp = caminho.parent / f"{caminho.stem}.{uuid.uuid4().hex[:8]}.tmp"
     try:
-        caminho.write_text(json.dumps(valor, ensure_ascii=False), encoding="utf-8")
+        tmp.write_text(json.dumps(valor, ensure_ascii=False), encoding="utf-8")
+        tmp.replace(caminho)
     except OSError:
-        pass
+        tmp.unlink(missing_ok=True)
 
 
 def caminho_arquivo(namespace: str, nome: str) -> Path:

@@ -70,11 +70,13 @@ def pontuar(lead: Lead) -> Lead:
         score += 8
         motivos.append("capital ≥ R$1M (+8)")
 
-    sit = (lead.situacao_cadastral or "").upper()
-    if sit and "ATIVA" in sit:
+    # Match EXATO com o enum da Receita (ATIVA/BAIXADA/INAPTA/SUSPENSA/NULA):
+    # "ATIVA" como substring casaria com "INATIVA" e pontuaria errado.
+    sit = (lead.situacao_cadastral or "").strip().upper()
+    if sit == "ATIVA":
         score += 5
         motivos.append("CNPJ ativo (+5)")
-    elif sit and "ATIVA" not in sit:
+    elif sit:
         score -= 15
         motivos.append(f"situação '{lead.situacao_cadastral}' (-15)")
 

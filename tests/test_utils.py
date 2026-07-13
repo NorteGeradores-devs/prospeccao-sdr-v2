@@ -119,3 +119,14 @@ def test_scoring_urgencia_prazo_proximo():
     perto = (date.today() + timedelta(days=3)).isoformat()
     lead = pontuar(Lead(fonte="pncp", nome="Edital", uf="AM", data_evento=perto))
     assert any("prazo em 3d (+12)" in m for m in lead.motivos_score)
+
+
+def test_scoring_situacao_match_exato_nao_confunde_inativa():
+    # Regressão: "ATIVA" como substring casava com "INATIVA" e dava +5 no lugar de -15.
+    ativa = pontuar(Lead(fonte="cnpj", nome="X", situacao_cadastral="ATIVA"))
+    inativa = pontuar(Lead(fonte="cnpj", nome="Y", situacao_cadastral="INATIVA"))
+    baixada = pontuar(Lead(fonte="cnpj", nome="Z", situacao_cadastral="BAIXADA"))
+    assert any("CNPJ ativo (+5)" in m for m in ativa.motivos_score)
+    assert not any("CNPJ ativo" in m for m in inativa.motivos_score)
+    assert any("(-15)" in m for m in inativa.motivos_score)
+    assert any("(-15)" in m for m in baixada.motivos_score)

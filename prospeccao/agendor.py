@@ -19,6 +19,13 @@ log = logging.getLogger("prospeccao")
 BASE = "https://api.agendor.com.br/v3"
 
 
+def _txt(v) -> str:
+    """Coage célula (str/None/NaN do pandas) para string limpa e sem espaços."""
+    if v is None or (isinstance(v, float) and pd.isna(v)):
+        return ""
+    return str(v).strip()
+
+
 def enviar_leads(df: pd.DataFrame, token: str | None = None,
                  apenas_temperatura: list[str] | None = None) -> dict:
     """Cria uma Organização no Agendor por lead. Retorna um resumo do envio.
@@ -59,22 +66,21 @@ def enviar_leads(df: pd.DataFrame, token: str | None = None,
 
 
 def _payload(row) -> dict:
-    descricao = _descricao(row)
     payload = {
-        "name": (row.get("nome") or row.get("nome_fantasia") or "").strip(),
-        "description": descricao,
+        "name": _txt(row.get("nome")) or _txt(row.get("nome_fantasia")),
+        "description": _descricao(row),
     }
-    cnpj = so_digitos(str(row.get("cnpj", "")))
+    cnpj = so_digitos(_txt(row.get("cnpj")))
     if cnpj_valido(cnpj):
         payload["cnpj"] = formatar_cnpj(cnpj)
-    if row.get("site"):
-        payload["website"] = str(row["site"])
+    if _txt(row.get("site")):
+        payload["website"] = _txt(row["site"])
 
     contato = {}
-    if row.get("email"):
-        contato["email"] = str(row["email"])
-    if row.get("telefone"):
-        contato["work"] = so_digitos(str(row["telefone"]))
+    if _txt(row.get("email")):
+        contato["email"] = _txt(row["email"])
+    if _txt(row.get("telefone")):
+        contato["work"] = so_digitos(_txt(row["telefone"]))
     if contato:
         payload["contact"] = contato
     return payload
@@ -82,19 +88,20 @@ def _payload(row) -> dict:
 
 def _descricao(row) -> str:
     linhas = [
-        f"[Prospecção SDR] Fonte: {row.get('fonte','')} | "
-        f"Score: {row.get('score','')} ({row.get('temperatura','')})",
-        f"Segmento: {row.get('segmento','')} | UF: {row.get('uf','')} | "
-        f"Município: {row.get('municipio','')}",
+        f"[Prospecção SDR] Fonte: {_txt(row.get('fonte'))} | "
+        f"Score: {_txt(row.get('score'))} ({_txt(row.get('temperatura'))})",
+        f"Segmento: {_txt(row.get('segmento'))} | UF: {_txt(row.get('uf'))} | "
+        f"Município: {_txt(row.get('municipio'))}",
     ]
-    if row.get("contato_nome"):
-        linhas.append(f"Contato: {row['contato_nome']} ({row.get('contato_cargo','')})")
-    if row.get("titulo"):
-        linhas.append(f"Oportunidade: {row['titulo']}")
-    if row.get("valor_estimado"):
-        linhas.append(f"Valor estimado: R$ {row['valor_estimado']}")
-    if row.get("url"):
-        linhas.append(f"Link: {row['url']}")
-    if row.get("observacoes"):
-        linhas.append(str(row["observacoes"]))
+    if _txt(row.get("contato_nome")):
+        linhas.append(f"Contato: {_txt(row['contato_nome'])} ({_txt(row.get('contato_cargo'))})")
+    if _txt(row.get("titulo")):
+        linhas.append(f"Oportunidade: {_txt(row['titulo'])}")
+    valor = row.get("valor_estimado")
+    if valor and not (isinstance(valor, float) and pd.isna(valor)):
+        linhas.append(f"Valor estimado: R$ {valor}")
+    if _txt(row.get("url")):
+        linhas.append(f"Link: {_txt(row['url'])}")
+    if _txt(row.get("observacoes")):
+        linhas.append(_txt(row["observacoes"]))
     return "\n".join(linhas)
