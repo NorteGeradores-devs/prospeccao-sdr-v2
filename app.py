@@ -78,6 +78,11 @@ ufs = st.sidebar.multiselect("Estados (UF)", options=TODAS_UFS,
 limite = st.sidebar.slider("Máx. por termo/fonte", 10, 100, 40, step=10)
 enriquecer = st.sidebar.toggle("Enriquecer via Receita Federal", value=True,
                                help="Preenche CNPJ, contato e sócios (mais lento).")
+resolver_cnpj = st.sidebar.toggle("Descobrir CNPJ por nome (best-effort)", value=False,
+                                  help="Para leads sem CNPJ (Google Places/SIGMINE), "
+                                       "busca o CNPJ em fontes gratuitas e confere na "
+                                       "Receita. Mais lento e sem garantia — os leads "
+                                       "resolvidos vêm marcados como 'confira'.")
 
 with st.sidebar.expander("PNCP — licitações"):
     keywords_txt = st.text_area("Palavras-chave (uma por linha)",
@@ -132,7 +137,7 @@ if rodar:
 
     with st.spinner("Buscando em fontes públicas e enriquecendo contatos..."):
         df = pipeline.executar(selecao, params, enriquecar=enriquecer,
-                               on_progress=progresso)
+                               resolver_cnpj=resolver_cnpj, on_progress=progresso)
     barra.empty()
     st.session_state["df"] = df
 

@@ -105,6 +105,7 @@ def _enriquecer_em_lote(leads: list[Lead], http: HttpClient,
 
 
 def executar(selecao: list[str], params: dict, enriquecar: bool = True,
+             resolver_cnpj: bool = False,
              on_progress: Callable[[str, int], None] | None = None) -> pd.DataFrame:
     """Roda o pipeline completo e devolve um DataFrame ordenado por score."""
     leads: list[Lead] = []
@@ -123,6 +124,15 @@ def executar(selecao: list[str], params: dict, enriquecar: bool = True,
                 on_progress(fonte, len(leads))
 
         leads = _dedup(leads)
+
+        # Descobre CNPJ por nome (Places/SIGMINE) ANTES de enriquecer, para que os
+        # leads resolvidos também puxem contato/sócios da Receita.
+        if resolver_cnpj:
+            from prospeccao.resolvedor_cnpj import resolver_em_lote
+            n = resolver_em_lote(leads, http, on_progress, len(leads))
+            if n:
+                leads = _dedup(leads)       # CNPJs novos podem revelar duplicatas
+                log.info("Resolução por nome: %d CNPJ(s) descoberto(s)", n)
 
         if enriquecar:
             alvo = [l for l in leads if l.cnpj]

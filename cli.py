@@ -41,6 +41,9 @@ def parse_args():
                    help="Máximo de itens por termo/fonte.")
     p.add_argument("--sem-enriquecer", action="store_true",
                    help="Não consultar a Receita (mais rápido).")
+    p.add_argument("--resolver-cnpj", action="store_true",
+                   help="Descobre o CNPJ por nome (best-effort grátis) para leads "
+                        "sem CNPJ (Google Places/SIGMINE). Mais lento.")
     p.add_argument("--saida", default="leads.xlsx",
                    help="Arquivo de saída (.xlsx ou .csv).")
     p.add_argument("--enviar-agendor", action="store_true",
@@ -66,6 +69,7 @@ def main():
 
     print(f">> Fontes: {', '.join(args.fontes)} | UFs: {', '.join(params['ufs'])}")
     df = pipeline.executar(args.fontes, params, enriquecar=not args.sem_enriquecer,
+                           resolver_cnpj=args.resolver_cnpj,
                            on_progress=lambda f, n: print(f"   [{f}] parcial: {n} leads"))
 
     r = pipeline.resumo(df)

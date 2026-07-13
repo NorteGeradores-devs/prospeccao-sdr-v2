@@ -154,6 +154,12 @@ SEGMENTO_PESO_PADRAO = 10          # segmento reconhecido, mas fora da lista fin
 # Urgência: licitação/evento com data próxima vira prioridade do SDR.
 URGENCIA_DIAS = 10                 # ≤ isso = bônus alto; ≤ 30 = bônus menor
 
+# Resolução best-effort de CNPJ a partir do nome (Google Places/SIGMINE vêm sem
+# CNPJ). Usa busca web gratuita + verificação na Receita. É opt-in (mais lento).
+RESOLVER_CNPJ_MAX = int(os.getenv("RESOLVER_CNPJ_MAX", "25"))            # teto de tentativas/rodada
+RESOLVER_CNPJ_SIMILARIDADE_MIN = float(                                  # aceite só acima disso
+    os.getenv("RESOLVER_CNPJ_SIMILARIDADE_MIN", "0.55"))
+
 # Limiar de score para marcar um lead como "quente".
 SCORE_QUENTE = 65
 SCORE_MORNO = 40

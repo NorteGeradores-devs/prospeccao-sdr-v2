@@ -84,6 +84,17 @@ def main():
     check(len(_dedup([e1, e2])) == 2, "editais distintos do mesmo órgão não colapsam")
     check("endereco" in COLUNAS, "coluna endereco exportada")
 
+    # 10. Resolvedor de CNPJ por nome (lógica pura, sem rede)
+    from prospeccao import resolvedor_cnpj as rc
+    check(rc._extrair_cnpjs("x 00.000.000/0001-91 y 11.111.111/1111-11") == ["00000000000191"],
+          "resolvedor extrai só CNPJ com DV válido")
+    check(rc._similaridade("Mineradora Norte LTDA", "MINERADORA NORTE S/A") == 1.0
+          and rc._similaridade("Padaria X", "Posto Y") == 0.0,
+          "resolvedor mede similaridade ignorando forma jurídica")
+    check(rc.resolver_em_lote([Lead(fonte="cnpj", nome="Tem", cnpj="00000000000191")],
+                              http=None) == 0,
+          "resolvedor pula lead que já tem CNPJ (sem rede)")
+
     print("\n>> SMOKE TEST OK — pipeline íntegro (sem rede).")
 
 
