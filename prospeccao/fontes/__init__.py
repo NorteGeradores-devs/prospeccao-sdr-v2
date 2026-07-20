@@ -3,13 +3,23 @@
 Cada módulo expõe uma função `buscar(http, **params) -> list[Lead]`.
 O dicionário FONTES abaixo é o registro usado pelo pipeline e pela UI.
 """
-from prospeccao.fontes import cnpj, google_places, pncp, sigmine, sympla
+from prospeccao.fontes import ccee, cnpj, google_places, pncp, sigmine, sisloc, sympla
 
 FONTES = {
     "pncp": {
         "buscar": pncp.buscar,
         "label": "PNCP — Licitações públicas",
         "descricao": "Editais com objeto ligado a geradores (compra/locação).",
+    },
+    "sisloc": {
+        "buscar": sisloc.buscar,
+        "label": "SISLOC — Clientes da Norte (ERP)",
+        "descricao": "Clientes que já locaram; inclui parados há X dias (reativação).",
+    },
+    "ccee": {
+        "buscar": ccee.buscar,
+        "label": "CCEE/ANEEL — Consumidores livres de energia",
+        "descricao": "Grandes consumidores do mercado livre (candidatos a backup).",
     },
     "google_places": {
         "buscar": google_places.buscar,

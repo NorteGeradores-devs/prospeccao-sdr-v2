@@ -43,6 +43,10 @@ class Lead:
     score: int = 0
     temperatura: str = "frio"        # quente | morno | frio
     motivos_score: list[str] = field(default_factory=list)
+    # Sinais específicos de fonte (ex.: dias sem locar do SISLOC, flag de
+    # consumidor livre da CCEE) que alimentam o scoring mas NÃO vão para a
+    # exportação — por isso ficam fora de COLUNAS.
+    extra: dict = field(default_factory=dict)
     coletado_em: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat(timespec="seconds")
     )

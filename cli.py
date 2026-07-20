@@ -44,6 +44,12 @@ def parse_args():
     p.add_argument("--resolver-cnpj", action="store_true",
                    help="Descobre o CNPJ por nome (best-effort grátis) para leads "
                         "sem CNPJ (Google Places/SIGMINE). Mais lento.")
+    p.add_argument("--dias-sem-locar", type=int, default=None,
+                   help="SISLOC: só clientes parados há pelo menos N dias (reativação).")
+    p.add_argument("--sisloc-com-locacao", action="store_true",
+                   help="SISLOC: exclui cadastros que nunca locaram.")
+    p.add_argument("--atualizar-ccee", action="store_true",
+                   help="Baixa/atualiza a base de consumidores livres (CCEE/ANEEL) e sai.")
     p.add_argument("--saida", default="leads.xlsx",
                    help="Arquivo de saída (.xlsx ou .csv).")
     p.add_argument("--enviar-agendor", action="store_true",
@@ -56,6 +62,16 @@ def parse_args():
 
 def main():
     args = parse_args()
+
+    if args.atualizar_ccee:
+        from prospeccao.fontes import ccee
+        print(">> Atualizando base de consumidores livres (CCEE/ANEEL)...")
+        qtd = ccee.atualizar_cache_aneel()
+        print(f">> {qtd} consumidores na base." if qtd
+              else ">> Falhou: a ANEEL não expôs a base agora. Tente mais tarde ou "
+                   "importe um CSV lista_perfil da CCEE.")
+        return
+
     params = pipeline.parametros_padrao()
     if args.ufs:
         params["ufs"] = [u.upper() for u in args.ufs]
@@ -66,6 +82,8 @@ def main():
     if args.cnpjs:
         params["cnpjs"] = args.cnpjs
     params["limite"] = args.limite
+    params["sisloc_dias_sem_locar"] = args.dias_sem_locar
+    params["sisloc_apenas_com_locacao"] = args.sisloc_com_locacao
 
     print(f">> Fontes: {', '.join(args.fontes)} | UFs: {', '.join(params['ufs'])}")
     df = pipeline.executar(args.fontes, params, enriquecar=not args.sem_enriquecer,

@@ -43,6 +43,15 @@ def _kwargs_por_fonte(fonte: str, p: dict) -> dict:
         return {"keywords": p["keywords"], "ufs": ufs,
                 "status": p.get("pncp_status", "recebendo_proposta"),
                 "max_por_termo": lim}
+    if fonte == "sisloc":
+        return {"ufs": ufs, "limite": lim,
+                "apenas_ativos": p.get("sisloc_apenas_ativos", False),
+                "dias_sem_locar_min": p.get("sisloc_dias_sem_locar"),
+                "apenas_com_locacao": p.get("sisloc_apenas_com_locacao", False)}
+    if fonte == "ccee":
+        return {"ufs": ufs, "submercado": p.get("ccee_submercado") or None,
+                "classe": p.get("ccee_classe") or None,
+                "limite": lim}
     if fonte == "google_places":
         return {"queries": p.get("google_queries", []),
                 "municipios": p.get("municipios", []),
@@ -137,6 +146,19 @@ def executar(selecao: list[str], params: dict, enriquecar: bool = True,
         if enriquecar:
             alvo = [l for l in leads if l.cnpj]
             _enriquecer_em_lote(alvo, http, on_progress, len(leads))
+
+    # Cruza TODOS os leads com a base de consumidores livres (CCEE/ANEEL): um
+    # lead de qualquer fonte que também compre energia no mercado livre ganha o
+    # selo de grande consumidor e o bônus de scoring. No-op se o cache CCEE
+    # estiver vazio (nenhuma base baixada ainda).
+    from prospeccao.fontes import ccee
+    if ccee.total_cache() > 0:
+        marcados = 0
+        for lead in leads:
+            if lead.fonte != "ccee" and ccee.marcar_grande_consumidor(lead):
+                marcados += 1
+        if marcados:
+            log.info("CCEE cruzou %d lead(s) como grande consumidor de energia", marcados)
 
     for lead in leads:
         pontuar(lead)

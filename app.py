@@ -101,6 +101,25 @@ with st.sidebar.expander("Google Places / Sympla"):
 with st.sidebar.expander("CNPJ — lista para enriquecer"):
     cnpjs_txt = st.text_area("CNPJs (um por linha)", value="", height=90)
 
+with st.sidebar.expander("SISLOC — clientes da Norte"):
+    sisloc_dias = st.number_input(
+        "Parados há ao menos (dias)", min_value=0, max_value=3650, value=0, step=30,
+        help="0 = todos. Ex.: 90 traz clientes sem locar há 90+ dias (reativação).")
+    sisloc_com_loc = st.toggle("Só quem já locou", value=True,
+                               help="Exclui cadastros que nunca locaram.")
+
+with st.sidebar.expander("CCEE/ANEEL — consumidores livres"):
+    from prospeccao.fontes import ccee as _ccee
+    st.caption(f"Base atual: **{_ccee.total_cache()}** consumidores livres.")
+    if st.button("🔄 Atualizar base (ANEEL)", use_container_width=True):
+        with st.spinner("Baixando a base de consumidores livres da ANEEL..."):
+            qtd = _ccee.atualizar_cache_aneel()
+        if qtd:
+            st.success(f"Base atualizada: {qtd} consumidores.")
+        else:
+            st.warning("A ANEEL não expôs a base agora. Tente mais tarde ou importe "
+                       "um CSV lista_perfil da CCEE.")
+
 rodar = st.sidebar.button("🚀 Buscar leads", type="primary", use_container_width=True)
 
 
@@ -126,6 +145,8 @@ if rodar:
         "pncp_status": pncp_status,
         "sympla_termo": sympla_termo,
         "limite": limite,
+        "sisloc_dias_sem_locar": int(sisloc_dias) or None,
+        "sisloc_apenas_com_locacao": sisloc_com_loc,
     })
 
     barra = st.progress(0.0, text="Iniciando...")

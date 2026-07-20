@@ -23,9 +23,10 @@ def check(cond: bool, msg: str):
 
 
 def main():
-    # 1. Registro de fontes completo
-    check(set(FONTES) == {"pncp", "google_places", "cnpj", "sympla", "sigmine"},
-          "5 fontes registradas")
+    # 1. Registro de fontes completo (5 públicas + sisloc/ccee portadas do David)
+    check(set(FONTES) == {"pncp", "google_places", "cnpj", "sympla", "sigmine",
+                          "sisloc", "ccee"},
+          "7 fontes registradas (inclui sisloc + ccee)")
 
     # 2. kwargs por fonte não quebram
     p = parametros_padrao()
@@ -94,6 +95,28 @@ def main():
     check(rc.resolver_em_lote([Lead(fonte="cnpj", nome="Tem", cnpj="00000000000191")],
                               http=None) == 0,
           "resolvedor pula lead que já tem CNPJ (sem rede)")
+
+    # 11. Fontes portadas do David — scoring dos sinais SISLOC/CCEE (sem rede)
+    cli_recorrente = pontuar(Lead(fonte="sisloc", nome="Cliente Fiel", uf="AM",
+                                  extra={"qtd_locacoes": 60, "dias_sem_locar": 120,
+                                         "situacao": "N", "ativo": "S"}))
+    cli_bloqueado = pontuar(Lead(fonte="sisloc", nome="Cliente Ruim", uf="AM",
+                                 extra={"qtd_locacoes": 0, "dias_sem_locar": None,
+                                        "situacao": "B", "ativo": "N"}))
+    check(cli_recorrente.score > cli_bloqueado.score,
+          "SISLOC: recorrente+reativação pontua acima de bloqueado/nunca-locou")
+    check(any("reativação" in m for m in cli_recorrente.motivos_score),
+          "SISLOC: janela de reativação entra nos motivos")
+
+    energia = pontuar(Lead(fonte="cnpj", nome="Fábrica X", uf="PA",
+                           extra={"grande_consumidor_energia": True}))
+    sem_energia = pontuar(Lead(fonte="cnpj", nome="Fábrica X", uf="PA"))
+    check(energia.score == sem_energia.score + 15,
+          "CCEE: selo de consumidor livre soma +15 no scoring")
+
+    for f in ("sisloc", "ccee"):          # kwargs por fonte não quebram
+        _kwargs_por_fonte(f, parametros_padrao())
+    check(True, "kwargs de sisloc/ccee mapeados")
 
     print("\n>> SMOKE TEST OK — pipeline íntegro (sem rede).")
 

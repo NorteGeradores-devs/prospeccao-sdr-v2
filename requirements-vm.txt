@@ -1,0 +1,10 @@
+# Dependências extras do deploy na VM (norte-vm) que NÃO vão para o Streamlit
+# Cloud. pyodbc precisa de driver ODBC do SQL Server no host — a VM já tem
+# FreeTDS/SQL Server instalados (usados pela Preventiva). Usar:
+#   pip install -r requirements-vm.txt
+-r requirements.txt
+pyodbc>=5.0
+
+# API (React + FastAPI). Só na VM — o Streamlit Cloud não usa.
+fastapi>=0.115
+uvicorn>=0.32

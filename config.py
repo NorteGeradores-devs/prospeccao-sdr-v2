@@ -41,6 +41,15 @@ AGENDOR_TOKEN = _secret("AGENDOR_TOKEN")
 # padrão embutida no código — defina APP_PASSWORD para liberar o acesso.
 APP_PASSWORD = _secret("APP_PASSWORD")
 
+# ERP SISLOC (SQL Server, somente leitura) — fonte de clientes existentes.
+# Reaproveita o usuário Leitor_norte já usado pela Preventiva. A fonte degrada
+# com elegância: sem credenciais/driver, o coletor apenas loga e devolve [].
+SISLOC_HOST = _secret("SISLOC_HOST", "167.249.210.170")
+SISLOC_PORT = _secret("SISLOC_PORT", "1433")
+SISLOC_DATABASE = _secret("SISLOC_DATABASE", "dbsisloc")
+SISLOC_USER = _secret("SISLOC_USER")
+SISLOC_PASSWORD = _secret("SISLOC_PASSWORD")
+
 # --------------------------------------------------------------------------- #
 # Rede
 # --------------------------------------------------------------------------- #
@@ -140,6 +149,8 @@ SEGMENTO_PESO = {
     "Saúde / Hospitais": 18,
     "TI / Data Centers": 18,
     "Energia / Utilities": 16,
+    "Energia / Grande consumidor": 16,   # fonte CCEE (rede básica / mercado livre)
+    "Cliente Norte (SISLOC)": 16,        # já é cliente da casa
     "Indústria de Alimentos": 14,
     "Agronegócio": 14,
     "Telecom": 14,
