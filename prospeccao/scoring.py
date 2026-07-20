@@ -19,11 +19,52 @@ from prospeccao.utils import dias_ate_data
 
 PESO_FONTE = {
     "pncp": 30,            # licitação com objeto "gerador" = intenção explícita
+    "sisloc": 28,          # já é cliente da Norte — relação pré-existente
+    "ccee": 24,            # consumidor livre = grande consumidor comprovado
     "sigmine": 18,         # mineração remota, forte consumidor de geração própria
     "sympla": 16,          # evento presencial precisa de energia temporária
     "cnpj": 12,            # empresa do segmento‑alvo
     "google_places": 10,   # negócio do segmento na praça
 }
+
+
+def _sinais_sisloc(lead: Lead, motivos: list[str]) -> int:
+    """Bônus/penalidades de cliente SISLOC lidos de lead.extra (portado do David).
+
+    Recompensa recorrência e a janela quente de reativação; penaliza cadastro
+    que nunca locou, bloqueado/pendente ou inativo.
+    """
+    extra = lead.extra
+    delta = 0
+
+    qtd = extra.get("qtd_locacoes") or 0
+    if qtd >= 50:
+        delta += 15; motivos.append("cliente recorrente ≥50 locações (+15)")
+    elif qtd >= 10:
+        delta += 10; motivos.append("cliente ≥10 locações (+10)")
+    elif qtd >= 1:
+        delta += 5; motivos.append("cliente com locação (+5)")
+
+    dias = extra.get("dias_sem_locar")
+    if dias is not None:
+        if 90 <= dias <= 180:
+            delta += 12; motivos.append(f"reativação quente ({dias}d parado) (+12)")
+        elif 181 <= dias <= 540:
+            delta += 8; motivos.append(f"reativação ({dias}d parado) (+8)")
+        elif dias > 1095:
+            delta -= 5; motivos.append(f"esfriou ({dias}d parado) (-5)")
+    else:
+        delta -= 3; motivos.append("cadastro nunca locou (-3)")
+
+    situacao = extra.get("situacao")
+    if situacao == "B":
+        delta -= 10; motivos.append("bloqueado (-10)")
+    elif situacao == "P":
+        delta -= 3; motivos.append("pendente (-3)")
+    if extra.get("ativo") == "N":
+        delta -= 5; motivos.append("cadastro inativo (-5)")
+
+    return delta
 
 
 def pontuar(lead: Lead) -> Lead:
@@ -88,6 +129,16 @@ def pontuar(lead: Lead) -> Lead:
     elif dias is not None and URGENCIA_DIAS < dias <= 30:
         score += 6
         motivos.append(f"prazo em {dias}d (+6)")
+
+    # Consumidor livre de energia (CCEE/ANEEL) — candidato forte a gerador de
+    # backup. Vale para a fonte "ccee" e para leads cruzados de outras fontes.
+    if lead.extra.get("grande_consumidor_energia"):
+        score += 15
+        motivos.append("consumidor livre de energia (+15)")
+
+    # Sinais de cliente SISLOC (recorrência / janela de reativação).
+    if "sisloc" in lead.fonte:
+        score += _sinais_sisloc(lead, motivos)
 
     score = max(0, min(100, score))
     lead.score = score

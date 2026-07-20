@@ -16,6 +16,11 @@ __pycache__/
 venv/
 .pytest_cache/
 
+# Front React (Vite)
+web/node_modules/
+web/dist/
+web/.vite/
+
 # SO / editor
 .DS_Store
 Thumbs.db
