@@ -43,7 +43,7 @@ export default function LoginScreen({ onAuthed }) {
         <div className="tagline">
           Console de prospecção ativa — leads pontuados por ICP de geradores, prontos para o time comercial.
         </div>
-        <div className="foot">Norte Geradores · Amazônia</div>
+        <div className="foot">Norte Geradores · Pará</div>
       </div>
 
       <div className="login-form">
