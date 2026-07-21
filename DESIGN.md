@@ -1,26 +1,29 @@
 ---
 name: Prospecção SDR — Norte Geradores
-description: Console de prospecção "O Farol · Papel & Tinta" — papel claro emoldurado por tinta preta, amarelo travado como sinal de "quente".
+description: Console de prospecção "O Farol Aceso" — superfície preto-marinho (a noite) com amarelo Norte como a luz da marca; o "quente" acende com glow.
 colors:
   amarelo-farol: "#fff100"
-  tinta-marinha: "#000917"
-  tinta-hover: "#0b1524"
-  corpo: "#1b2430"
-  nevoa: "#5b6675"
-  bruma: "#8a94a3"
-  papel-frio: "#f5f6f8"
-  superficie: "#ffffff"
-  papel-afundado: "#eef0f3"
-  hairline: "#e2e5ea"
-  borda-forte: "#d2d7de"
-  on-tinta: "#e9ecf1"
-  on-tinta-nevoa: "#9aa4b2"
-  morno-bg: "#fff3e0"
-  morno-fg: "#8a5200"
-  frio-bg: "#eef1f5"
-  frio-fg: "#4b5566"
-  sucesso: "#1e874b"
-  perigo: "#c6303b"
+  amarelo-press: "#e6da00"
+  noite: "#0a1120"
+  tinta: "#131f33"
+  poco: "#070d18"
+  elevado: "#1b2947"
+  casco: "#060b16"
+  hairline: "#2a3a56"
+  borda-forte: "#465d80"
+  luz: "#f5f7fb"
+  corpo: "#cdd6e4"
+  nevoa: "#93a1b8"
+  bruma: "#61708a"
+  on-farol: "#0a1120"
+  morno-fg: "#f6b65a"
+  morno-dot: "#f5a300"
+  frio-fg: "#9fb0c6"
+  frio-dot: "#6b7a90"
+  sucesso: "#35c880"
+  perigo: "#ff6b76"
+  meter-frio: "#47566e"
+  meter-morno: "#b8791f"
 typography:
   display:
     fontFamily: "Archivo, Segoe UI, system-ui, sans-serif"
@@ -73,29 +76,29 @@ spacing:
   "2xl": "48px"
 components:
   button-primary:
-    backgroundColor: "{colors.tinta-marinha}"
-    textColor: "#ffffff"
+    backgroundColor: "{colors.amarelo-farol}"
+    textColor: "{colors.on-farol}"
     typography: "{typography.body}"
     rounded: "{rounded.lg}"
     height: "40px"
     padding: "0 16px"
   button-primary-hover:
-    backgroundColor: "{colors.tinta-hover}"
-    textColor: "#ffffff"
+    backgroundColor: "{colors.amarelo-press}"
+    textColor: "{colors.on-farol}"
   button-secondary:
-    backgroundColor: "{colors.superficie}"
-    textColor: "{colors.tinta-marinha}"
+    backgroundColor: "{colors.tinta}"
+    textColor: "{colors.luz}"
     rounded: "{rounded.lg}"
     height: "40px"
     padding: "0 16px"
   button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.tinta-marinha}"
+    textColor: "{colors.luz}"
     rounded: "{rounded.lg}"
     height: "40px"
     padding: "0 16px"
   input:
-    backgroundColor: "{colors.superficie}"
+    backgroundColor: "{colors.tinta}"
     textColor: "{colors.corpo}"
     rounded: "{rounded.lg}"
     height: "40px"
@@ -107,19 +110,19 @@ components:
     height: "30px"
     padding: "0 12px"
   chip-selected:
-    backgroundColor: "{colors.tinta-marinha}"
-    textColor: "#ffffff"
+    backgroundColor: "{colors.amarelo-farol}"
+    textColor: "{colors.on-farol}"
     rounded: "{rounded.md}"
     height: "30px"
     padding: "0 12px"
   source-card:
-    backgroundColor: "{colors.superficie}"
-    textColor: "{colors.tinta-marinha}"
+    backgroundColor: "{colors.tinta}"
+    textColor: "{colors.luz}"
     rounded: "{rounded.lg}"
     padding: "12px 16px"
   temp-badge-quente:
     backgroundColor: "{colors.amarelo-farol}"
-    textColor: "{colors.tinta-marinha}"
+    textColor: "{colors.on-farol}"
     rounded: "{rounded.sm}"
     height: "20px"
     padding: "0 8px"
@@ -129,57 +132,57 @@ components:
 
 ## 1. Overview
 
-**Creative North Star: "O Farol · Papel & Tinta"**
+**Creative North Star: "O Farol Aceso"**
 
-Um console de operação, não uma vitrine. O sistema é uma mesa de trabalho de papel claro (`#f5f6f8`) emoldurada por uma barra de tinta preta-marinha (`#000917`) — o *bezel* que segura a operação. Sobre esse papel, o dado vira ação: tabelas densas mas legíveis, medidores que se comportam como instrumentos, e um único ponto de luz — o amarelo `#fff100` — que só acende no que está **quente**. É o farol: a luz que diz onde o olho pousa primeiro.
+Um console de operação, não uma vitrine — e à noite. A superfície é a tinta da marca levada ao extremo: um preto-marinho profundo (`#0a1120`) que ocupa quase tudo. Sobre esse escuro, o amarelo `#fff100` da Norte é a **luz** — o farol aceso. Ele acende na ação (botão primário), na seleção (chip ligado, fonte escolhida), no foco e, glowing, no que está **quente**. É a marca preto-e-amarelo da Norte assumida por inteiro: industrial, de energia, inconfundível numa reunião.
 
-A voz é **afiada e instrumental**. Controles precisos de cantos suaves, retângulos sóbrios, resposta rápida — a sensação de ter uma ferramenta boa na mão. Nada aqui é decorativo por decorar: cada cor, peso e sombra carrega função. A tipografia mistura Archivo (títulos, com aperto óptico) e IBM Plex Sans (corpo), com IBM Plex Mono reservado a números — porque score, valor e contagem são leituras de instrumento, e leitura de instrumento é monoespaçada.
+A voz é **afiada e instrumental**. Controles precisos de cantos suaves, retângulos sóbrios, resposta rápida. No escuro, a profundidade vem da **luminância das superfícies**, não de sombra: a tinta base é a mais escura, cartões e a tabela sobem um degrau, painéis flutuantes sobem outro. A tipografia mistura Archivo (títulos) e IBM Plex Sans (corpo), com IBM Plex Mono reservado a números — porque score, valor e contagem são leituras de instrumento.
 
-O sistema **rejeita** explicitamente: cara de planilha crua ou protótipo Streamlit; SaaS colorido e lúdico (gradientes, ilustrações fofas, cor por decoração); dashboard corporativo pesado (cinza, denso, cheio de widget que ninguém olha); e a estética de landing page marqueteira (hero gigante, eyebrows em toda seção). A sobriedade e a precisão são o que sustenta a tela numa projeção — sem precisar de um "modo demo".
+O sistema **rejeita** explicitamente: cara de planilha crua ou protótipo Streamlit; SaaS colorido e lúdico (gradientes, ilustrações fofas); dashboard corporativo pesado (cinza, denso, cheio de widget que ninguém olha); e a estética de landing page marqueteira (hero gigante, eyebrows em toda seção). O escuro aqui é decisão de marca, não moda: preto e amarelo são as cores da Norte.
 
 **Key Characteristics:**
-- **Papel & Tinta:** superfícies de papel claro, moldura de tinta preta-marinha. Sem dark mode; sem cinza corporativo.
-- **Amarelo é sinal, nunca enfeite:** `#fff100` é travado no significado "quente". Se aparece, quer dizer algo.
+- **Preto & Amarelo:** superfície preto-marinho (a noite), amarelo Norte como a luz. Sem tema claro; as cores são as da marca.
+- **Amarelo é a luz da marca:** acento de ação, seleção, foco e estado. Restrito e proposital — nunca inunda a tela.
+- **O quente acende:** badge e medidor "quente" ganham glow amarelo; destacam mesmo com o amarelo sendo acento geral.
+- **Profundidade por luz, não sombra:** superfícies mais claras = mais altas; hairlines de 1px organizam o resto.
 - **Números são instrumento:** todo dígito (score, valor, contagem) vem em mono com tabular-nums.
-- **Plano por padrão:** hairlines de 1px organizam o espaço; sombra só aparece no que flutua (drawer, barra de seleção, toast).
-- **Denso, mas com hierarquia:** tabela de trabalho com respiro no grid de 4px; o score conduz o olho.
 
 ## 2. Colors
 
-A paleta é quase monocromática de propósito — papel e tinta — para que o amarelo signifique alguma coisa quando surge. Cor aqui é sinal e estado, não temperamento.
+Quase monocromática de propósito — a noite preto-marinho — para que o amarelo signifique alguma coisa quando acende. Cor aqui é a marca, o sinal e o estado; nunca decoração.
 
 ### Primary
-- **Amarelo Farol** (`#fff100`): o único acento saturado, e o amarelo **cheio** é travado em "quente" — preenchimento do medidor de score, badge de temperatura quente, segmento "Quente" do filtro, o pulso do farol no toprail e nos estados vazios. Nunca é fundo de página, nunca é texto sobre papel (1,18:1 — ilegível). Sobre tinta marinha rende 16,96:1. Sua versão **translúcida** (14%, `--yellow-tint`) estende o sinal a estados correlatos ao calor — linha selecionada, motivo positivo de score. A única marca decorativa cheia que escapa disso é o ponto que assinala a pill "CCEE" no toprail.
+- **Amarelo Farol** (`#fff100`): a luz. Acento principal da interface e cor da marca — botão primário (texto preto, `--on-farol`), estado selecionado de chips e cards de fonte, aresta da linha em foco, anel de foco de campos, o pulso do farol, a barra de progresso. Sobre a noite rende 16,01:1. **Nunca é texto sobre papel claro** (não há papel) e sempre carrega texto preto quando é fundo.
+- **Amarelo Brasa** (`#e6da00`): o mesmo amarelo pressionado (`:active`/hover do primário).
 
-### Neutral — Tinta (frente)
-- **Tinta Marinha** (`#000917`): a tinta. Azul-marinho quase preto, cor oficial da marca. É a moldura (toprail, painel de login), o texto de maior peso (títulos), o fundo do botão primário, o estado selecionado de chips e a borda interna da linha **em foco** (teclado). 19,97:1 sobre branco.
-- **Tinta Hover** (`#0b1524`): a tinta um passo mais clara, só para hover do botão primário.
-- **Corpo** (`#1b2430`): o texto de leitura corrente. 14,48:1 sobre o papel — este é o texto, não um cinza claro "por elegância".
-- **Névoa** (`#5b6675`): cinza médio para texto secundário — labels, chaves de resumo, descrições de apoio, placeholder de campo. Piso de legibilidade respeitado (5,39:1 sobre papel, 5,83:1 sobre branco).
-- **Bruma** (`#8a94a3`): o cinza mais claro. **Reservado a marcas decorativas e ícones** (setas de ordenação, ícones de contato apagados, o traço "—" de vazio). Rende ~3:1 — abaixo do piso de texto, então **nunca** carrega texto que precise ser lido.
+### Neutral — Tinta (superfícies escuras)
+- **Noite** (`#0a1120`): o canvas base da aplicação — preto-marinho profundo, a extensão da tinta da marca.
+- **Tinta** (`#131f33`): a superfície de trabalho um degrau acima — cartões, tabela, campos, cabeçalho de tabela.
+- **Poço** (`#070d18`): o degrau rebaixado — trilho do medidor, fundo de textarea, tags de fonte.
+- **Elevado** (`#1b2947`): painéis que flutuam — barra de seleção (e o tom de referência da elevação máxima).
+- **Casco** (`#060b16`): a moldura mais profunda — toprail e painel de login, o bezel que segura a operação.
+- **Hairline** (`#2a3a56`) e **Borda Forte** (`#465d80`): as duas espessuras de traço de 1px. Hairline separa (divisórias, bordas de cartão); borda forte contém (campos, botão secundário, segmented).
 
-### Neutral — Papel (superfícies)
-- **Papel Frio** (`#f5f6f8`): o canvas da aplicação. Cinza-papel levíssimo, frio, não creme.
-- **Superfície** (`#ffffff`): branco puro dos cartões, tabela, campos e overlays — o que "sobe" do papel.
-- **Papel Afundado** (`#eef0f3`): o tom rebaixado — trilho do medidor, fundo de textarea, tag de fonte, hover de botão fantasma.
-- **Hairline** (`#e2e5ea`) e **Borda Forte** (`#d2d7de`): as duas espessuras de traço de 1px. Hairline separa (divisórias, bordas de cartão); borda forte contém (campos, botão secundário, segmented).
+### Neutral — Luz (texto claro)
+- **Luz** (`#f5f7fb`): o texto de máxima ênfase — títulos, nomes, valores. 17,58:1 sobre a noite; este é o texto forte, não um cinza.
+- **Corpo** (`#cdd6e4`): a leitura corrente. 12,87:1 — confortável o dia inteiro.
+- **Névoa** (`#93a1b8`): texto secundário — labels, descrições, placeholder de campo, ícones apagados. 7,21:1 sobre a noite (bem acima do piso).
+- **Bruma** (`#61708a`): o cinza mais claro, decorativo — setas de ordenação, o traço "—" de vazio. ~3,76:1: **nunca** carrega texto que precise ser lido.
+- **Sobre-Casco** (`#e9ecf1`): texto claro sobre a moldura (rótulos do toprail, contagem da barra de seleção). 16,62:1.
 
-### Neutral — sobre a Tinta
-- **Sobre-Tinta** (`#e9ecf1`): texto claro sobre a moldura marinha — a cor de texto padrão do toprail e a contagem da barra de seleção (o wordmark em si vai a branco puro). 16,87:1.
-- **Sobre-Tinta Névoa** (`#9aa4b2`): texto secundário sobre a moldura (subtítulo central, pills). 7,92:1.
-
-### Secondary — Temperatura (estado, não marca)
-- **Brasa Morna** (fundo `#fff3e0`, texto `#8a5200`, ponto `#f5a300`): o "morno". Âmbar quente e discreto — 5,82:1. É o único lugar onde um laranja aparece, e é estado, não acento de marca.
-- **Frio** (fundo `#eef1f5`, texto `#4b5566`): o "frio". Cinza-azulado neutro — 6,64:1. Ausência de calor, literalmente.
+### Secondary — Temperatura (estado)
+- **Quente**: amarelo cheio (`#fff100`) com texto preto e **glow** (`0 0 10px rgba(255,241,0,0.30)`) — o badge e o medidor acendem. É o único elemento amarelo que brilha, e é isso que o separa do amarelo-acento (botões/chips) mesmo no escuro.
+- **Morno** (fundo âmbar translúcido, texto `#f6b65a`, ponto `#f5a300`): âmbar quente — 6,96:1. O único laranja da tela, e é estado.
+- **Frio** (fundo slate translúcido, texto `#9fb0c6`): cinza-azulado frio — 6,01:1. Ausência de calor.
 
 ### Tertiary — Funcional
-- **Sucesso** (`#1e874b`): verde de confirmação — toasts de sucesso, ícone de contato presente, o *flash* de cópia. **O flash de "copiado" é verde, nunca amarelo** — amarelo é travado em "quente".
-- **Perigo** (`#c6303b`): vermelho de erro — toasts de erro, motivos negativos de score, situação cadastral irregular.
+- **Sucesso** (`#35c880`): verde de confirmação, calibrado para o escuro — toasts, ícone de contato presente, o *flash* de cópia. 7,65:1 sobre a tinta. **O flash de "copiado" é verde, nunca amarelo** — amarelo é ação/marca.
+- **Perigo** (`#ff6b76`): coral de erro — toasts, motivos negativos, situação irregular. 5,99:1.
 
 ### Named Rules
-**A Regra do Sinal.** O amarelo **cheio** (`#fff100`) só significa "quente" — nunca fundo de página, nunca hover genérico. O sinal se estende, translúcido, a estados correlatos ao calor (seleção, motivo positivo); como cor decorativa cheia, só o ponto da pill CCEE. A raridade é o ponto.
+**A Regra da Luz.** O amarelo cheio (`#fff100`) é a luz da marca e só aparece com propósito: ação (botão primário), seleção (chip/fonte ativos), foco, o farol e o "quente". Nunca é fundo de grandes áreas, nunca é texto, nunca é decoração. A superfície é a noite; a luz é rara — é isso que a faz significar.
 
-**A Regra Papel & Tinta.** O fundo é papel claro; a estrutura é tinta preta-marinha. Sem dark mode "porque fica moderno", sem creme/bege, sem cinza corporativo. Calor vem do amarelo e da tipografia, nunca de um fundo tingido.
+**A Regra do Quente Aceso.** Como o amarelo agora é acento geral, o "quente" se distingue **acendendo**: badge e medidor quentes ganham glow. Morno é âmbar, frio é slate. O quente é o único amarelo que brilha.
 
 ## 3. Typography
 
@@ -187,89 +190,90 @@ A paleta é quase monocromática de propósito — papel e tinta — para que o 
 **Body Font:** IBM Plex Sans (fallback system-ui, -apple-system, Segoe UI, sans-serif)
 **Label/Mono Font:** IBM Plex Mono (fallback ui-monospace, Cascadia Mono, Menlo, monospace)
 
-**Character:** um par de contraste, não de similaridade. Archivo é uma grotesca condensada de peso 600–700 com aperto óptico (`letter-spacing: -0.01em`) para títulos que "seguram" a tela; IBM Plex Sans é humanista, calma e altamente legível a 14px para o corpo. O mono não é opção — é identidade: todo número é leitura de instrumento.
+**Character:** um par de contraste, não de similaridade. Archivo é uma grotesca condensada de peso 600–700 com aperto óptico (`letter-spacing: -0.01em`) para títulos que "seguram" a tela; IBM Plex Sans é humanista, calma e legível a 14px em texto claro sobre o escuro. O mono não é opção — é identidade: todo número é leitura de instrumento.
 
 ### Hierarchy
 - **Display** (Archivo 700, 28px, line 32px, `-0.01em`): título da tela de login. O maior texto do app; teto propositalmente baixo — o console não grita.
 - **Headline** (Archivo 700, 20px): nome do lead no drawer, cabeçalho "Leads" da tabela. Sem aperto de tracking — o `-0.01em` fica só no Display.
 - **Title** (Archivo 600, 16px): título de cartão-resumo e blocos de seção.
 - **Body** (IBM Plex Sans 400, 14px / line 20px): a base de tudo. Comprimento de linha de leitura corrente mantido curto (drawer ~34–40ch); nunca prosa larga.
-- **Label** (Archivo 600, 11px, `letter-spacing: 0.08em`, UPPERCASE): a *eyebrow* — rótulos de seção e de célula de métrica. **Uso deliberado e nomeado**, não scaffolding em toda seção.
+- **Label** (Archivo 600, 11px, `letter-spacing: 0.08em`, UPPERCASE): a *eyebrow* — rótulos de seção e de célula de métrica. Uso deliberado e nomeado, não scaffolding em toda seção.
 - **Mono** (IBM Plex Mono, pesos 400–600, 11–28px, `font-feature-settings: "tnum" 1`): números — do valor-instrumento de 28px nos tiles de métrica ao score de 15px na linha, mais contagem CCEE, tags de fonte e pesos de motivo.
 
 ### Named Rules
-**A Regra do Instrumento.** Todo número que o operador lê como medida — score, R$, contagem, prazo — vem em IBM Plex Mono com tabular-nums. Números nunca ficam na fonte de corpo; a monoespessura é o que faz a tabela ler como painel de instrumento.
+**A Regra do Instrumento.** Todo número que o operador lê como medida — score, R$, contagem, prazo — vem em IBM Plex Mono com tabular-nums. A monoespessura faz a tabela ler como painel de instrumento.
 
-**A Regra da Eyebrow Nomeada.** O rótulo em caixa-alta tracked (`.eyebrow`) é um elemento de sistema, usado em métricas e cabeçalhos de seção da busca — não um kicker reflexo acima de cada bloco. Se aparece, nomeia uma região real.
+**A Regra da Eyebrow Nomeada.** O rótulo em caixa-alta tracked é um elemento de sistema (métricas, cabeçalhos de seção da busca), não um kicker reflexo acima de cada bloco.
 
 ## 4. Elevation
 
-O sistema é **plano por padrão**. Profundidade se organiza com traços de 1px (hairline e borda forte) e com o rebaixamento tonal do Papel Afundado — não com sombra. Sombra é cara e só aparece no que **genuinamente flutua sobre o papel**: o drawer de detalhe, a barra de seleção fixa, os toasts e overlays. Nunca em cartões ou linhas em repouso.
+Tema escuro: **profundidade vem da luminância das superfícies, não de sombra**. Há uma escala de quatro degraus — Casco (`#060b16`, moldura) < Noite (`#0a1120`, base) < Tinta (`#131f33`, cartões/tabela) < Elevado (`#1b2947`, painéis flutuantes) — e é a diferença de luz entre eles que cria a hierarquia. Sombra é secundária: existe para separar o que **genuinamente flutua** (drawer, barra de seleção, toast), reforçada por uma borda hairline, porque no escuro a sombra sozinha some.
 
 ### Shadow Vocabulary
-- **Overlay** (`box-shadow: 0 8px 24px rgba(0,9,23,0.12), 0 1px 2px rgba(0,9,23,0.08)`): elementos que pairam — drawer, barra de seleção, toast. A sombra é tingida com a tinta marinha, não preto puro.
-- **Pin** (`box-shadow: 0 4px 12px rgba(0,9,23,0.06)`): token de elevação sutil **definido mas ainda sem uso** — reservado para um estado afixado/em foco. Registrado para não ser reinventado com outro valor.
-- **Focus ring** (`0 0 0 3px rgba(0,9,23,0.1)` + borda tinta): não é elevação, é estado — o "glow" de foco de campos.
+- **Overlay** (`box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.4)`): elementos que pairam — drawer, barra de seleção, toast. Sombra preta e mais densa que no claro, para separar do fundo escuro; sempre acompanhada de superfície mais clara + borda.
+- **Pin** (`box-shadow: 0 6px 16px rgba(0,0,0,0.35)`): token de elevação sutil **definido mas ainda sem uso** — reservado para um estado afixado/em foco.
+- **Glow do Farol** (`0 0 10px rgba(255,241,0,0.30)`): não é elevação, é sinal — o brilho do "quente" (badge e medidor).
+- **Focus ring** (`0 0 0 3px rgba(255,241,0,0.18)` + borda amarela): estado de foco de campos — o anel agora é amarelo (a luz da marca).
 
 ### Named Rules
-**A Regra do Plano em Repouso.** Superfícies são planas em repouso. Sombra é uma resposta a estado (flutuar, focar), nunca decoração de cartão. Se um cartão tem sombra parado na tela, está errado — use hairline.
+**A Regra do Degrau de Luz.** Elevar = clarear. Um cartão sobe virando uma superfície mais clara (Tinta sobre Noite), não ganhando sombra parado. Se algo precisa "subir", troca o tom de superfície; sombra só entra quando o elemento realmente flutua sobre o conteúdo.
 
 ## 5. Components
 
-O caráter geral: **afiado e instrumental**. Cantos suaves (4–8px, nunca pílula), traços de 1px, transições curtas (80–160ms) com curvas *ease-out*. Tudo responde rápido e sem drama.
+O caráter geral: **afiado e instrumental**. Cantos suaves (4–8px, nunca pílula), traços de 1px, transições curtas (80–260ms) com curvas *ease-out*. Tudo responde rápido e sem drama.
 
 ### Buttons
 - **Shape:** cantos suaves (8px, `--r-lg`). Altura 40px (32px na variante `sm`). Peso 600.
-- **Primary:** fundo Tinta Marinha (`#000917`), texto branco. Hover clareia para Tinta Hover (`#0b1524`). O CTA "Enviar ao Agendor" e ações de confirmação.
-- **Secondary:** fundo branco, texto tinta, borda forte de 1px (`#d2d7de`). Hover para `#f1f3f6`. Ações neutras (CSV, Excel, Refinar).
-- **Ghost:** só texto tinta; hover ganha fundo Papel Afundado. Ações terciárias (limpar filtros).
-- **On-dark:** sobre a moldura marinha, invertem — fundo branco/contorno claro, para "Nova busca" e "Sair".
+- **Primary:** fundo Amarelo Farol (`#fff100`), texto preto (`--on-farol`). Hover escurece para Amarelo Brasa (`#e6da00`). É a luz da marca na ação — "Enviar ao Agendor", confirmações.
+- **Secondary:** fundo Tinta (`#131f33`), texto Luz, borda forte de 1px (`#465d80`). Hover para o tom de linha (`--row-hover`). Ações neutras (CSV, Excel, Refinar).
+- **Ghost:** só texto Luz; hover ganha fundo Poço. Ações terciárias (limpar filtros).
+- **On-dark / outline:** sobre a moldura (barra de seleção), o CTA principal também é amarelo (`btn-on-dark`); ações secundárias são contorno claro (`btn-outline-dark`).
 - **Feedback:** `:active` aplica `transform: scale(0.99)` — um clique tátil, não um bounce.
 
 ### Chips
-- **Style:** retângulo de 30px, borda hairline, texto Névoa, **fonte mono em caixa-alta** (é rótulo técnico — UF, fonte).
-- **State:** selecionado inverte para fundo Tinta Marinha + texto branco (`aria-pressed="true"`). Sem meio-termo colorido.
+- **Style:** retângulo de 30px, borda hairline, texto Névoa, **fonte mono em caixa-alta** (rótulo técnico — UF, fonte).
+- **State:** selecionado inverte para fundo Amarelo Farol + texto preto (`aria-pressed="true"`). Seleção = a luz da marca.
 
 ### Cards / Containers
 - **Corner Style:** 8px (`--r-lg`).
-- **Background:** Superfície branca sobre o Papel Frio; cabeçalhos de tabela e trilhos usam Papel Afundado.
-- **Shadow Strategy:** **nenhuma em repouso** (ver Elevation). Definição vem da borda hairline de 1px.
-- **Border:** hairline (`#e2e5ea`) para separar; borda forte (`#d2d7de`) só quando o container precisa conter interação.
-- **Internal Padding:** 16–24px (`--sp-4`/`--sp-6`), no grid de 4px.
-- **Source card** (seleção de fonte): estado ativo troca a borda por um traço tinta de 2px (compensado no padding para não pular layout) + um *check* que aparece — nunca um preenchimento colorido.
+- **Background:** Tinta (`#131f33`) sobre a Noite; trilhos e tags usam Poço.
+- **Shadow Strategy:** **nenhuma em repouso** (ver Elevation). Definição vem da borda hairline de 1px + do degrau de luz.
+- **Border:** hairline (`#2a3a56`) para separar; borda forte (`#465d80`) quando o container contém interação.
+- **Internal Padding:** 16–24px, no grid de 4px.
+- **Source card** (seleção de fonte): estado ativo troca a borda por um traço **amarelo** de 2px + um *check* amarelo que aparece — nunca um preenchimento colorido.
 
 ### Inputs / Fields
-- **Style:** fundo branco, borda forte de 1px, cantos 8px, altura 40px. Textarea usa fundo Papel Afundado e fonte mono (é entrada técnica — keywords, CNPJs).
-- **Focus:** borda vira tinta + anel `0 0 0 3px rgba(0,9,23,0.1)`. Firme, não difuso.
-- **Placeholder:** cor Névoa (`#5b6675`, 5,83:1) — legível. **Nunca Bruma:** placeholder é texto e precisa de ≥ 4,5:1.
-- **Switch / Slider:** trilho cinza que vira tinta quando ligado; polegar branco de cantos suaves. O switch é o único lugar com uma curva levemente elástica (`cubic-bezier(0.34,1.56,0.64,1)`) — o "clique" do interruptor.
+- **Style:** fundo Tinta, borda forte de 1px, cantos 8px, altura 40px. Textarea usa fundo Poço e fonte mono (entrada técnica — keywords, CNPJs).
+- **Focus:** borda vira **amarela** + anel `0 0 0 3px rgba(255,241,0,0.18)`. Firme, cor da marca.
+- **Placeholder:** cor Névoa (`#93a1b8`, 6,32:1 sobre a tinta) — legível. **Nunca Bruma:** placeholder é texto e precisa de ≥ 4,5:1.
+- **Switch / Slider:** trilho escuro que vira **amarelo** quando ligado; o polegar do slider é amarelo. Ligado = ativo = a luz da marca. O switch é o único lugar com uma curva levemente elástica (`cubic-bezier(0.34,1.56,0.64,1)`).
 
 ### Navigation
-- **Toprail:** barra fixa de 56px em Tinta Marinha, `z-index: 40`. Wordmark "Norte · Prospecção" em Archivo 700 branco, precedido pelo farol pulsante. Centro em mono Sobre-Tinta Névoa com o resumo da busca; direita com pill CCEE, "Nova busca" e "Sair". Foco visível inverte para contorno branco sobre a moldura escura.
-- **Filters bar:** faixa *sticky* logo abaixo do toprail (`top: 56px`), fundo papel, com o *segmented control* de temperatura (Todos / Quente / Morno / Frio). O segmento "Quente" ativo é o raro caso de fundo amarelo — porque é temperatura.
+- **Toprail:** barra fixa de 56px em Casco (`#060b16`), `z-index: 40`. Wordmark "Norte · Prospecção" em Archivo 700 branco, precedido pelo farol pulsante. Centro em mono Sobre-Casco Névoa; direita com pill CCEE, "Nova busca" e "Sair".
+- **Filters bar:** faixa *sticky* logo abaixo do toprail, fundo Noite, com o *segmented control* de temperatura. O segmento genérico selecionado usa um preenchimento slate (`--selected-fill`); o segmento **"Quente" ativo acende amarelo** (texto preto) — filtrar por quente literalmente acende a luz.
 
 ### Signature Components
-- **O Farol (beacon):** ponto de 8px em Amarelo Farol com halo `0 0 0 3px rgba(255,241,0,0.18)`, pulsando suave (scale 1→1.15, opacity 0.7→1, 2200ms, `easeInOutSine`, alternate). É o **único loop de marca** e a assinatura visual — os outros loops contínuos são apenas estados de carregamento (barra de progresso, shimmer do skeleton). Aparece no toprail e nos estados vazios ("acender o farol").
-- **Score Meter:** número mono (tabular) + trilho de 64px com preenchimento colorido pela temperatura (frio cinza-claro, morno cinza-médio, quente amarelo com keyline). As barras "assentam" na entrada (`easeOutCubic`, 520ms, stagger 18ms) — comportamento de instrumento, não enfeite.
-- **Temp Badge:** cápsula de 20px com ponto + rótulo. Quente = amarelo sobre tinta (keyline interna); morno = brasa; frio = cinza-azulado. O acento de 3px na borda esquerda da linha/cartão (`temp-accent`) é um filete colorido **sancionado** — ao lado do filete de status do toast — porque codifica dado (temperatura), não decora.
-- **Selection Bar:** barra flutuante fixa em Tinta Marinha, centralizada na base, com contagem mono e ações. Entra por baixo (`easeOutCubic`, 260ms).
+- **O Farol (beacon):** ponto de 8px em Amarelo Farol com halo `0 0 0 3px rgba(255,241,0,0.18)`, pulsando suave (scale 1→1.15, opacity 0.7→1, 2200ms, `easeInOutSine`, alternate). É o **único loop de marca** e a assinatura visual — os outros loops contínuos são só estados de carregamento (barra de progresso amarela, shimmer do skeleton). Brilha no escuro — o farol aceso.
+- **Score Meter:** número mono (tabular) + trilho Poço com preenchimento pela temperatura (frio slate `#47566e`, morno âmbar `#b8791f`, quente amarelo **com glow**). As barras "assentam" na entrada (`easeOutCubic`, 520ms, stagger 18ms). *(O preenchimento é `display: block` — sem isso o span inline colapsa a 0px.)*
+- **Temp Badge:** cápsula de 20px com ponto + rótulo. Quente = amarelo + texto preto + glow; morno = âmbar; frio = slate. O acento de 3px na borda esquerda da linha/cartão (`temp-accent`) é um filete colorido **sancionado** — ao lado do filete de status do toast — porque codifica dado (temperatura), não decora.
+- **Selection Bar:** barra flutuante fixa em Elevado (`#1b2947`, mais clara que a base) com borda hairline, contagem mono e ações. No escuro, um painel flutuante precisa **clarear** para subir — não escurecer.
 
 ## 6. Do's and Don'ts
 
 ### Do:
-- **Do** manter o Amarelo Farol (`#fff100`) travado em "quente" — medidor, badge, segmento, farol. Se acender, significa temperatura.
-- **Do** compor sobre Papel & Tinta: papel claro (`#f5f6f8` / `#ffffff`) emoldurado por tinta marinha (`#000917`).
+- **Do** tratar o amarelo (`#fff100`) como a **luz da marca**: ação, seleção, foco, farol e quente. Restrito e proposital, sempre com texto preto quando é fundo.
+- **Do** compor sobre a noite preto-marinho (`#0a1120` / `#131f33`); elevar clareando a superfície, não com sombra.
+- **Do** acender o "quente" com glow (badge e medidor) para que salte mesmo com o amarelo sendo acento geral.
 - **Do** usar IBM Plex Mono com `tnum` para todo número que é medida (score, R$, contagem, prazo).
-- **Do** organizar profundidade com hairlines de 1px e rebaixo tonal; reservar sombra para o que flutua (drawer, barra de seleção, toast).
-- **Do** usar texto Corpo (`#1b2430`) para leitura e Névoa (`#5b6675`) para secundário — ambos ≥ 4,5:1.
+- **Do** usar texto Luz (`#f5f7fb`) e Corpo (`#cdd6e4`) para leitura, Névoa (`#93a1b8`) para secundário — todos ≥ 4,5:1 sobre o escuro.
 - **Do** manter transições curtas (80–260ms) com curvas *ease-out*, e um alternativo para `prefers-reduced-motion` (o app zera durações e mata o loop do farol).
 
 ### Don't:
 - **Don't** deixar o app com **cara de planilha crua ou protótipo Streamlit** — tabelão sem hierarquia, widgets soltos, sem identidade.
-- **Don't** cair em **SaaS colorido e lúdico** — gradientes, ilustrações fofas, cor por decoração. Cor aqui é sinal e estado.
-- **Don't** virar **dashboard corporativo pesado** — cinza, denso, cheio de painel que ninguém olha.
+- **Don't** cair em **SaaS colorido e lúdico** — gradientes, ilustrações fofas, cor por decoração. Amarelo é marca e estado.
+- **Don't** virar **dashboard corporativo pesado** — cinza morto, denso, cheio de painel que ninguém olha.
 - **Don't** adotar estética de **landing page marqueteira** — hero gigante, *eyebrow* acima de cada seção, blocos de venda. Isto é console, não vitrine.
-- **Don't** usar Amarelo Farol como fundo, hover genérico ou texto sobre papel (1,18:1 — ilegível). E **nunca** o *flash* de "copiado" em amarelo: ele é verde (`#1e874b`).
-- **Don't** usar Bruma (`#8a94a3`) para texto que precise ser lido — é decorativa (~3:1). Placeholder e labels usam Névoa.
-- **Don't** aplicar `background-clip: text` com gradiente, ou glassmorphism decorativo. Filete colorido de borda-esquerda só é sancionado quando **codifica estado** — o `temp-accent` de 3px da linha (temperatura) e o filete de status do toast (sucesso/erro); como enfeite, nunca.
-- **Don't** pôr sombra em cartão ou linha em repouso — se está parado na tela, é plano.
+- **Don't** inundar de amarelo: ele é a luz, não a superfície. Grandes áreas amarelas, texto amarelo sobre claro (1,18:1) e amarelo decorativo são proibidos. E **nunca** o *flash* de "copiado" em amarelo: é verde (`#35c880`).
+- **Don't** usar Bruma (`#61708a`) para texto que precise ser lido — é decorativa (~3,76:1). Placeholder e labels usam Névoa.
+- **Don't** criar profundidade com sombra em repouso — no escuro, elevar é **clarear** a superfície. Sombra só no que flutua.
+- **Don't** aplicar `background-clip: text` com gradiente ou glassmorphism decorativo; filete colorido de borda só quando **codifica estado** (temp-accent da linha, status do toast).

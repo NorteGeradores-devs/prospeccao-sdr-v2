@@ -47,7 +47,7 @@ Do lead à ação em poucos cliques — nada se interpõe entre o SDR e a próxi
 
 Apresentável sem modo demo — a operação real é digna de uma reunião com a diretoria como está; a sobriedade é a qualidade que impressiona.
 
-Cor é sinal, não enfeite — o amarelo da marca fica reservado ao "quente"; sobriedade por escolha, para que o sinal signifique algo quando aparece.
+Cor é a luz da marca, não enfeite — sobre a superfície preto-marinho (a noite), o amarelo Norte é o acento de ação, seleção e foco, e o "quente" acende com glow. Restrito e proposital: a luz é rara para significar algo.
 
 ## Accessibility & Inclusion
 

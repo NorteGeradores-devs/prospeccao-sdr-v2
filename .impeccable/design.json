@@ -4,31 +4,32 @@
   "title": "Design System: Prospecção SDR — Norte Geradores",
   "extensions": {
     "colorMeta": {
-      "amarelo-farol": { "role": "primary", "displayName": "Amarelo Farol", "canonical": "#fff100", "tonalRamp": ["#45420c", "#7e780e", "#bcb20a", "#fff102", "#f5eb46", "#f1eb84", "#f3f0bd", "#fbfaef"] },
-      "tinta-marinha": { "role": "neutral", "displayName": "Tinta Marinha", "canonical": "#000917", "tonalRamp": ["#000917", "#0c2345", "#0e3a7e", "#0a50bc", "#468af5", "#84aff1", "#bdd2f3", "#eff4fb"] },
-      "corpo": { "role": "neutral", "displayName": "Corpo", "canonical": "#1b2430", "tonalRamp": ["#212831", "#364456", "#4a607c", "#5d7ba4", "#859ab6", "#abb8ca", "#d0d7df", "#f3f5f6"] },
-      "nevoa": { "role": "neutral", "displayName": "Névoa", "canonical": "#5b6675", "tonalRamp": ["#25282c", "#3f454d", "#58616e", "#707e90", "#929ca8", "#b4b9c1", "#d4d7db", "#f4f5f6"] },
-      "papel-frio": { "role": "neutral", "displayName": "Papel Frio", "canonical": "#f5f6f8", "tonalRamp": ["#24272e", "#3c4350", "#535e73", "#6a7997", "#8e98ad", "#b1b7c4", "#d3d6dc", "#f5f6f8"] },
-      "sucesso": { "role": "tertiary", "displayName": "Sucesso", "canonical": "#1e874b", "tonalRamp": ["#173b26", "#226941", "#2a9c5b", "#1e874b", "#66d595", "#98ddb6", "#c6e9d5", "#f1f9f4"] },
-      "perigo": { "role": "tertiary", "displayName": "Perigo", "canonical": "#c6303b", "tonalRamp": ["#3a181a", "#682429", "#992d35", "#c6303b", "#d36870", "#dc999e", "#e8c7ca", "#f8f1f2"] },
-      "morno-fg": { "role": "secondary", "displayName": "Brasa Morna", "canonical": "#8a5200", "tonalRamp": ["#452e0c", "#7e500e", "#8a5200", "#ff9802", "#f5ae46", "#f1c584", "#f3ddbd", "#fbf6ef"] },
-      "frio-fg": { "role": "secondary", "displayName": "Frio", "canonical": "#4b5566", "tonalRamp": ["#24282d", "#3d444e", "#4b5566", "#6d7b94", "#909aab", "#b2b8c3", "#d4d7dc", "#f4f5f6"] }
+      "amarelo-farol": { "role": "primary", "displayName": "Amarelo Farol", "canonical": "#fff100", "tonalRamp": ["#2a2809", "#625d0e", "#a1990c", "#e6da04", "#f7ec31", "#f1ea74", "#f2eeb0", "#f9f8e6"] },
+      "noite": { "role": "neutral", "displayName": "Noite", "canonical": "#0a1120", "tonalRamp": ["#0a1120", "#111622", "#22304e", "#30497e", "#3a60b1", "#6081c8", "#92a7d3", "#c0cbe2"] },
+      "tinta": { "role": "neutral", "displayName": "Tinta", "canonical": "#131f33", "tonalRamp": ["#070d18", "#131f33", "#25334b", "#354e79", "#4268a9", "#6689c1", "#96abcf", "#c2cde0"] },
+      "luz": { "role": "neutral", "displayName": "Luz", "canonical": "#f5f7fb", "tonalRamp": ["#131720", "#26324a", "#374c77", "#4565a6", "#6986be", "#98aacd", "#c3ccdf", "#f5f7fb"] },
+      "nevoa": { "role": "neutral", "displayName": "Névoa", "canonical": "#93a1b8", "tonalRamp": ["#16191d", "#2f3641", "#475366", "#5e708d", "#93a1b8", "#a6afbf", "#cacfd8", "#eeeff2"] },
+      "sucesso": { "role": "tertiary", "displayName": "Sucesso", "canonical": "#35c880", "tonalRamp": ["#10231a", "#205039", "#2c8258", "#35c880", "#5ace95", "#8ed7b3", "#bee4d1", "#eaf5f0"] },
+      "perigo": { "role": "tertiary", "displayName": "Perigo", "canonical": "#ff6b76", "tonalRamp": ["#2a090c", "#620e14", "#a10c18", "#e60415", "#ff6b76", "#f1747d", "#f2b0b5", "#f9e6e8"] },
+      "morno-fg": { "role": "secondary", "displayName": "Morno (âmbar)", "canonical": "#f6b65a", "tonalRamp": ["#281c0b", "#5e3f12", "#996314", "#db8710", "#f6b65a", "#ebbd7a", "#eed6b4", "#f8f1e7"] },
+      "frio-fg": { "role": "secondary", "displayName": "Frio (slate)", "canonical": "#9fb0c6", "tonalRamp": ["#15191e", "#2d3743", "#44546a", "#587292", "#9fb0c6", "#a3b0c2", "#c9d0d9", "#edeff2"] }
     },
     "typographyMeta": {
       "display": { "displayName": "Display (Archivo 700)", "purpose": "Título da tela de login — o maior texto do app, teto propositalmente baixo." },
       "headline": { "displayName": "Headline (Archivo 700)", "purpose": "Nome do lead no drawer, cabeçalho 'Leads' da tabela." },
       "title": { "displayName": "Title (Archivo 600)", "purpose": "Título de cartão-resumo e blocos de seção." },
-      "body": { "displayName": "Body (IBM Plex Sans 400)", "purpose": "Leitura corrente a 14px; base de tudo." },
+      "body": { "displayName": "Body (IBM Plex Sans 400)", "purpose": "Leitura corrente a 14px, texto claro sobre o escuro." },
       "label": { "displayName": "Eyebrow (Archivo 600 · caps)", "purpose": "Rótulo de seção e de célula de métrica; deliberado, não scaffolding." },
       "mono": { "displayName": "Mono (IBM Plex Mono · tnum)", "purpose": "Todo número que é medida: score, R$, contagem, prazo." }
     },
     "shadows": [
-      { "name": "overlay", "value": "0 8px 24px rgba(0,9,23,0.12), 0 1px 2px rgba(0,9,23,0.08)", "purpose": "Elementos que pairam sobre o papel: drawer, barra de seleção, toast. Sombra tingida de tinta marinha." },
-      { "name": "pin", "value": "0 4px 12px rgba(0,9,23,0.06)", "purpose": "Token de elevação sutil definido mas ainda sem selector ativo — reservado para estado afixado/em foco." },
-      { "name": "focus-ring", "value": "0 0 0 3px rgba(0,9,23,0.1)", "purpose": "Estado de foco de campos (com borda tinta), não elevação." }
+      { "name": "overlay", "value": "0 12px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.4)", "purpose": "Elementos que pairam: drawer, barra de seleção, toast. No escuro, densa e sempre com superfície mais clara + borda." },
+      { "name": "pin", "value": "0 6px 16px rgba(0,0,0,0.35)", "purpose": "Token de elevação sutil definido mas ainda sem selector ativo — reservado para estado afixado/em foco." },
+      { "name": "glow-farol", "value": "0 0 10px rgba(255,241,0,0.30)", "purpose": "O brilho do 'quente' (badge e medidor). Não é elevação, é sinal." },
+      { "name": "focus-ring", "value": "0 0 0 3px rgba(255,241,0,0.18)", "purpose": "Estado de foco de campos, com borda amarela — a luz da marca." }
     ],
     "motion": [
-      { "name": "beacon-pulse", "value": "scale 1→1.15, opacity 0.7→1, 2200ms easeInOutSine alternate loop", "purpose": "O farol — único loop de marca (os demais loops contínuos são só estados de carregamento). Assinatura visual." },
+      { "name": "beacon-pulse", "value": "scale 1→1.15, opacity 0.7→1, 2200ms easeInOutSine alternate loop", "purpose": "O farol — único loop de marca (os demais loops contínuos são só estados de carregamento). Assinatura visual, brilha no escuro." },
       { "name": "score-settle", "value": "width→score%, 520ms easeOutCubic, stagger 18ms", "purpose": "As barras de score 'assentam' como instrumento na entrada." },
       { "name": "count-up", "value": "0→valor, 700ms easeOutExpo", "purpose": "Contagem dos tiles de métrica." },
       { "name": "drawer-in", "value": "translateX 24→0, opacity 0→1, 220ms easeOutQuart", "purpose": "Entrada do drawer de detalhe." },
@@ -47,63 +48,63 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "CTA de confirmação (Enviar ao Agendor). Tinta marinha, texto branco.",
+      "description": "CTA de confirmação (Enviar ao Agendor). Amarelo Farol, texto preto — a luz da marca na ação.",
       "html": "<button class=\"ds-btn-primary\">Enviar ao Agendor</button>",
-      "css": ".ds-btn-primary{font:600 14px/1 'IBM Plex Sans',system-ui,sans-serif;height:40px;padding:0 16px;border:none;border-radius:8px;background:#000917;color:#fff;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:background 120ms ease,transform 80ms ease}.ds-btn-primary:hover{background:#0b1524}.ds-btn-primary:active{transform:scale(0.99)}.ds-btn-primary:focus-visible{outline:2px solid #000917;outline-offset:2px}"
+      "css": ".ds-btn-primary{font:600 14px/1 'IBM Plex Sans',system-ui,sans-serif;height:40px;padding:0 16px;border:none;border-radius:8px;background:#fff100;color:#0a1120;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:background 120ms ease,transform 80ms ease}.ds-btn-primary:hover{background:#e6da00}.ds-btn-primary:active{transform:scale(0.99)}.ds-btn-primary:focus-visible{outline:2px solid #fff100;outline-offset:2px}"
     },
     {
       "name": "Secondary Button",
       "kind": "button",
       "refersTo": "button-secondary",
-      "description": "Ação neutra (CSV, Excel, Refinar). Branco com borda forte.",
+      "description": "Ação neutra (CSV, Excel, Refinar). Superfície tinta com borda forte, texto claro.",
       "html": "<button class=\"ds-btn-secondary\">Excel</button>",
-      "css": ".ds-btn-secondary{font:600 14px/1 'IBM Plex Sans',system-ui,sans-serif;height:40px;padding:0 16px;border:1px solid #d2d7de;border-radius:8px;background:#fff;color:#000917;cursor:pointer;transition:background 120ms ease}.ds-btn-secondary:hover{background:#f1f3f6}.ds-btn-secondary:focus-visible{outline:2px solid #000917;outline-offset:2px}"
+      "css": ".ds-btn-secondary{font:600 14px/1 'IBM Plex Sans',system-ui,sans-serif;height:40px;padding:0 16px;border:1px solid #465d80;border-radius:8px;background:#131f33;color:#f5f7fb;cursor:pointer;transition:background 120ms ease}.ds-btn-secondary:hover{background:#182742}.ds-btn-secondary:focus-visible{outline:2px solid #fff100;outline-offset:2px}"
     },
     {
       "name": "Text Input",
       "kind": "input",
       "refersTo": "input",
-      "description": "Campo de texto. Placeholder em Névoa (legível ≥4.5:1), anel de foco tinta.",
+      "description": "Campo de texto. Placeholder em Névoa (legível ≥4.5:1), anel de foco amarelo.",
       "html": "<input class=\"ds-input\" placeholder=\"Buscar empresa…\" />",
-      "css": ".ds-input{font:400 14px 'IBM Plex Sans',system-ui,sans-serif;height:40px;padding:0 12px;width:220px;border:1px solid #d2d7de;border-radius:8px;background:#fff;color:#1b2430;transition:border-color 120ms ease,box-shadow 120ms ease}.ds-input::placeholder{color:#5b6675}.ds-input:focus{outline:none;border-color:#000917;box-shadow:0 0 0 3px rgba(0,9,23,.1)}"
+      "css": ".ds-input{font:400 14px 'IBM Plex Sans',system-ui,sans-serif;height:40px;padding:0 12px;width:220px;border:1px solid #465d80;border-radius:8px;background:#131f33;color:#cdd6e4;transition:border-color 120ms ease,box-shadow 120ms ease}.ds-input::placeholder{color:#93a1b8}.ds-input:focus{outline:none;border-color:#fff100;box-shadow:0 0 0 3px rgba(255,241,0,.18)}"
     },
     {
       "name": "Filter Chips",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "Rótulos técnicos (UF, fonte) em mono caps. Selecionado inverte para tinta.",
+      "description": "Rótulos técnicos (UF, fonte) em mono caps. Selecionado inverte para amarelo (a luz da seleção).",
       "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"true\">AM</button><button class=\"ds-chip\" aria-pressed=\"false\">PA</button></div>",
-      "css": ".ds-chips{display:flex;gap:8px}.ds-chip{height:30px;padding:0 12px;border-radius:6px;border:1px solid #e2e5ea;background:transparent;color:#5b6675;font:12px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;transition:background 120ms ease,border-color 120ms ease,color 120ms ease}.ds-chip:hover{border-color:#d2d7de;color:#1b2430}.ds-chip[aria-pressed=\"true\"]{background:#000917;border-color:#000917;color:#fff}"
+      "css": ".ds-chips{display:flex;gap:8px}.ds-chip{height:30px;padding:0 12px;border-radius:6px;border:1px solid #2a3a56;background:transparent;color:#93a1b8;font:12px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;transition:background 120ms ease,border-color 120ms ease,color 120ms ease}.ds-chip:hover{border-color:#465d80;color:#cdd6e4}.ds-chip[aria-pressed=\"true\"]{background:#fff100;border-color:#fff100;color:#0a1120}"
     },
     {
       "name": "Temperature Badge (Quente)",
       "kind": "custom",
       "refersTo": "temp-badge-quente",
-      "description": "O sinal 'quente': amarelo sobre tinta com keyline interna. Único uso de amarelo como fundo.",
+      "description": "O sinal 'quente' que acende: amarelo + texto preto + glow. É o único amarelo que brilha.",
       "html": "<span class=\"ds-temp-quente\"><span class=\"ds-dot\"></span>Quente</span>",
-      "css": ".ds-temp-quente{height:20px;padding:0 8px;border-radius:4px;background:#fff100;color:#000917;box-shadow:inset 0 0 0 1px rgba(0,9,23,.25);font:600 11px 'IBM Plex Sans',system-ui,sans-serif;text-transform:uppercase;letter-spacing:.02em;display:inline-flex;align-items:center;gap:6px}.ds-temp-quente .ds-dot{width:6px;height:6px;border-radius:50%;background:#000917}"
+      "css": ".ds-temp-quente{height:20px;padding:0 8px;border-radius:4px;background:#fff100;color:#0a1120;box-shadow:inset 0 0 0 1px rgba(0,9,23,.45),0 0 10px rgba(255,241,0,.30);font:600 11px 'IBM Plex Sans',system-ui,sans-serif;text-transform:uppercase;letter-spacing:.02em;display:inline-flex;align-items:center;gap:6px}.ds-temp-quente .ds-dot{width:6px;height:6px;border-radius:50%;background:#0a1120}"
     },
     {
       "name": "Score Meter (Quente)",
       "kind": "custom",
       "refersTo": "score-meter",
-      "description": "Número mono tabular + trilho preenchido pela temperatura. Comportamento de instrumento.",
-      "html": "<div class=\"ds-score\"><span class=\"ds-score-val\">82</span><span class=\"ds-score-track\"><span class=\"ds-score-fill\" style=\"width:82%\"></span></span></div>",
-      "css": ".ds-score{display:flex;align-items:center;gap:12px}.ds-score-val{font:600 15px 'IBM Plex Mono',monospace;font-feature-settings:'tnum' 1;width:26px;text-align:right;color:#000917}.ds-score-track{width:64px;height:6px;border-radius:3px;background:#eef0f3;overflow:hidden}.ds-score-fill{display:block;height:100%;background:#fff100;box-shadow:inset 0 0 0 1px rgba(0,9,23,.25);border-radius:3px}"
+      "description": "Número mono tabular + trilho preenchido pela temperatura (quente com glow). O fill é display:block — sem isso o span inline colapsa a 0px.",
+      "html": "<div class=\"ds-score\"><span class=\"ds-score-val\">82</span><span class=\"ds-score-track\"><span class=\"ds-score-fill\"></span></span></div>",
+      "css": ".ds-score{display:flex;align-items:center;gap:12px}.ds-score-val{font:600 15px 'IBM Plex Mono',monospace;font-feature-settings:'tnum' 1;width:26px;text-align:right;color:#f5f7fb}.ds-score-track{width:64px;height:6px;border-radius:3px;background:#070d18;overflow:hidden}.ds-score-fill{display:block;height:100%;width:82%;background:#fff100;box-shadow:inset 0 0 0 1px rgba(0,9,23,.45),0 0 10px rgba(255,241,0,.30);border-radius:3px}"
     },
     {
       "name": "Source Card (selected)",
       "kind": "card",
       "refersTo": "source-card",
-      "description": "Seleção de fonte. Ativo troca borda por traço tinta de 2px + check — nunca preenchimento colorido.",
+      "description": "Seleção de fonte. Ativo troca borda por traço amarelo de 2px + check amarelo — nunca preenchimento colorido.",
       "html": "<button class=\"ds-source\" aria-pressed=\"true\"><span class=\"ds-source-label\">PNCP</span><span class=\"ds-source-desc\">Licitações públicas com objeto gerador</span></button>",
-      "css": ".ds-source{text-align:left;background:#fff;border:1px solid #e2e5ea;border-radius:8px;padding:12px 16px;display:flex;flex-direction:column;gap:2px;cursor:pointer;transition:border-color 120ms ease}.ds-source:hover{border-color:#d2d7de}.ds-source[aria-pressed=\"true\"]{border:2px solid #000917;padding:11px 15px}.ds-source-label{font:600 14px 'IBM Plex Sans',system-ui,sans-serif;color:#000917}.ds-source-desc{font:400 12px/16px 'IBM Plex Sans',system-ui,sans-serif;color:#5b6675}"
+      "css": ".ds-source{text-align:left;background:#131f33;border:1px solid #2a3a56;border-radius:8px;padding:12px 16px;display:flex;flex-direction:column;gap:2px;cursor:pointer;transition:border-color 120ms ease}.ds-source:hover{border-color:#465d80}.ds-source[aria-pressed=\"true\"]{border:2px solid #fff100;padding:11px 15px}.ds-source-label{font:600 14px 'IBM Plex Sans',system-ui,sans-serif;color:#f5f7fb}.ds-source-desc{font:400 12px/16px 'IBM Plex Sans',system-ui,sans-serif;color:#93a1b8}"
     },
     {
       "name": "Farol (beacon)",
       "kind": "custom",
       "refersTo": "beacon",
-      "description": "A assinatura da marca: ponto amarelo pulsante com halo. O único loop do app.",
+      "description": "A assinatura da marca: ponto amarelo pulsante com halo, brilhando no escuro. O único loop do app.",
       "html": "<span class=\"ds-beacon\" role=\"img\" aria-label=\"Farol\"></span>",
       "css": ".ds-beacon{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff100;box-shadow:0 0 0 3px rgba(255,241,0,.18);animation:ds-pulse 2200ms ease-in-out infinite alternate}@keyframes ds-pulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.15);opacity:1}}@media (prefers-reduced-motion:reduce){.ds-beacon{animation:none}}"
     },
@@ -111,45 +112,45 @@
       "name": "Toast (success)",
       "kind": "custom",
       "refersTo": "toast",
-      "description": "Notificação flutuante. Filete de status à esquerda (verde=sucesso) — codifica estado, não decora.",
+      "description": "Notificação flutuante em superfície tinta. Filete de status à esquerda (verde=sucesso) — codifica estado, não decora.",
       "html": "<div class=\"ds-toast\"><div class=\"ds-toast-title\">Enviado ao Agendor</div><div class=\"ds-toast-msg\">Criados: 12 · Falhas: 0</div></div>",
-      "css": ".ds-toast{background:#fff;border:1px solid #e2e5ea;border-left:3px solid #1e874b;border-radius:8px;box-shadow:0 8px 24px rgba(0,9,23,.12),0 1px 2px rgba(0,9,23,.08);padding:12px 16px;min-width:260px;max-width:360px}.ds-toast-title{font:600 13px 'IBM Plex Sans',system-ui,sans-serif;color:#000917}.ds-toast-msg{font:400 13px 'IBM Plex Sans',system-ui,sans-serif;color:#5b6675;margin-top:2px}"
+      "css": ".ds-toast{background:#131f33;border:1px solid #2a3a56;border-left:3px solid #35c880;border-radius:8px;box-shadow:0 12px 32px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.4);padding:12px 16px;min-width:260px;max-width:360px}.ds-toast-title{font:600 13px 'IBM Plex Sans',system-ui,sans-serif;color:#f5f7fb}.ds-toast-msg{font:400 13px 'IBM Plex Sans',system-ui,sans-serif;color:#93a1b8;margin-top:2px}"
     }
   ],
   "narrative": {
-    "northStar": "O Farol · Papel & Tinta",
-    "overview": "Um console de operação, não uma vitrine. O sistema é uma mesa de trabalho de papel claro (#f5f6f8) emoldurada por uma barra de tinta preta-marinha (#000917) — o bezel que segura a operação. Sobre esse papel, o dado vira ação: tabelas densas mas legíveis, medidores que se comportam como instrumentos, e um único ponto de luz — o amarelo #fff100 — que só acende no que está quente. A voz é afiada e instrumental: controles precisos de cantos suaves, resposta rápida, nada decorativo por decorar. A tipografia mistura Archivo (títulos) e IBM Plex Sans (corpo), com IBM Plex Mono reservado a números, porque leitura de instrumento é monoespaçada.",
+    "northStar": "O Farol Aceso",
+    "overview": "Um console de operação, não uma vitrine — e à noite. A superfície é a tinta da marca levada ao extremo: um preto-marinho profundo (#0a1120) que ocupa quase tudo. Sobre esse escuro, o amarelo #fff100 da Norte é a luz — o farol aceso — acendendo na ação, na seleção, no foco e, glowing, no que está quente. É a marca preto-e-amarelo da Norte assumida por inteiro: industrial, de energia, inconfundível. A voz é afiada e instrumental; no escuro, profundidade vem da luminância das superfícies, não de sombra. Tipografia Archivo (títulos) + IBM Plex Sans (corpo) + IBM Plex Mono (números).",
     "keyCharacteristics": [
-      "Papel & Tinta: superfícies de papel claro, moldura de tinta preta-marinha. Sem dark mode; sem cinza corporativo.",
-      "Amarelo é sinal, nunca enfeite: #fff100 é travado no significado 'quente'.",
-      "Números são instrumento: todo dígito vem em mono com tabular-nums.",
-      "Plano por padrão: hairlines de 1px organizam o espaço; sombra só no que flutua.",
-      "Denso, mas com hierarquia: o score conduz o olho, no grid de 4px."
+      "Preto & Amarelo: superfície preto-marinho (a noite), amarelo Norte como a luz. Sem tema claro; as cores são as da marca.",
+      "Amarelo é a luz da marca: acento de ação, seleção, foco e estado. Restrito e proposital, nunca inunda.",
+      "O quente acende: badge e medidor 'quente' ganham glow amarelo.",
+      "Profundidade por luz, não sombra: superfícies mais claras = mais altas; hairlines de 1px organizam o resto.",
+      "Números são instrumento: todo dígito vem em mono com tabular-nums."
     ],
     "rules": [
-      { "name": "A Regra do Sinal", "body": "O amarelo cheio (#fff100) só significa 'quente' — nunca fundo, nunca hover genérico. O sinal se estende, translúcido, a estados correlatos (seleção, motivo positivo); como cor decorativa cheia, só o ponto da pill CCEE. A raridade é o ponto.", "section": "colors" },
-      { "name": "A Regra Papel & Tinta", "body": "O fundo é papel claro; a estrutura é tinta preta-marinha. Sem dark mode, sem creme/bege, sem cinza corporativo. Calor vem do amarelo e da tipografia, nunca de um fundo tingido.", "section": "colors" },
+      { "name": "A Regra da Luz", "body": "O amarelo cheio (#fff100) é a luz da marca e só aparece com propósito: ação, seleção, foco, o farol e o quente. Nunca fundo de grandes áreas, nunca texto, nunca decoração. A superfície é a noite; a luz é rara — é isso que a faz significar.", "section": "colors" },
+      { "name": "A Regra do Quente Aceso", "body": "Como o amarelo agora é acento geral, o 'quente' se distingue acendendo: badge e medidor quentes ganham glow. Morno é âmbar, frio é slate. O quente é o único amarelo que brilha.", "section": "colors" },
       { "name": "A Regra do Instrumento", "body": "Todo número que o operador lê como medida — score, R$, contagem, prazo — vem em IBM Plex Mono com tabular-nums. A monoespessura faz a tabela ler como painel.", "section": "typography" },
       { "name": "A Regra da Eyebrow Nomeada", "body": "O rótulo em caixa-alta tracked é um elemento de sistema (métricas, cabeçalhos de seção), não um kicker reflexo acima de cada bloco.", "section": "typography" },
-      { "name": "A Regra do Plano em Repouso", "body": "Superfícies são planas em repouso. Sombra é resposta a estado (flutuar, focar), nunca decoração de cartão. Se um cartão tem sombra parado na tela, está errado — use hairline.", "section": "elevation" }
+      { "name": "A Regra do Degrau de Luz", "body": "No escuro, elevar é clarear a superfície (Tinta sobre Noite), não ganhar sombra parado. Sombra só entra quando o elemento realmente flutua sobre o conteúdo.", "section": "elevation" }
     ],
     "dos": [
-      "Do manter o Amarelo Farol (#fff100) travado em 'quente' — medidor, badge, segmento, farol.",
-      "Do compor sobre Papel & Tinta: papel claro (#f5f6f8 / #ffffff) emoldurado por tinta marinha (#000917).",
+      "Do tratar o amarelo (#fff100) como a luz da marca: ação, seleção, foco, farol e quente. Sempre com texto preto quando é fundo.",
+      "Do compor sobre a noite preto-marinho (#0a1120 / #131f33); elevar clareando a superfície, não com sombra.",
+      "Do acender o 'quente' com glow (badge e medidor) para que salte mesmo com o amarelo sendo acento geral.",
       "Do usar IBM Plex Mono com tnum para todo número que é medida.",
-      "Do organizar profundidade com hairlines de 1px e rebaixo tonal; reservar sombra para o que flutua.",
-      "Do usar texto Corpo (#1b2430) para leitura e Névoa (#5b6675) para secundário — ambos ≥ 4,5:1.",
+      "Do usar texto Luz (#f5f7fb) e Corpo (#cdd6e4) para leitura, Névoa (#93a1b8) para secundário — todos ≥ 4,5:1.",
       "Do manter transições curtas (80–260ms) com curvas ease-out e um alternativo para prefers-reduced-motion."
     ],
     "donts": [
       "Don't deixar o app com cara de planilha crua ou protótipo Streamlit.",
       "Don't cair em SaaS colorido e lúdico — gradientes, ilustrações fofas, cor por decoração.",
-      "Don't virar dashboard corporativo pesado — cinza, denso, cheio de painel que ninguém olha.",
+      "Don't virar dashboard corporativo pesado — cinza morto, denso, cheio de painel que ninguém olha.",
       "Don't adotar estética de landing page marqueteira — hero gigante, eyebrow em toda seção, blocos de venda.",
-      "Don't usar Amarelo Farol como fundo, hover genérico ou texto sobre papel (1,18:1). O flash de 'copiado' é verde, nunca amarelo.",
-      "Don't usar Bruma (#8a94a3) para texto que precise ser lido — é decorativa (~3:1). Placeholder e labels usam Névoa.",
-      "Don't aplicar background-clip:text com gradiente ou glassmorphism decorativo; filete colorido de borda só quando codifica estado.",
-      "Don't pôr sombra em cartão ou linha em repouso — se está parado na tela, é plano."
+      "Don't inundar de amarelo: ele é a luz, não a superfície. Grandes áreas amarelas, texto amarelo e amarelo decorativo são proibidos. O flash de 'copiado' é verde, nunca amarelo.",
+      "Don't usar Bruma (#61708a) para texto que precise ser lido — é decorativa (~3,76:1). Placeholder e labels usam Névoa.",
+      "Don't criar profundidade com sombra em repouso — no escuro, elevar é clarear a superfície.",
+      "Don't aplicar background-clip:text com gradiente ou glassmorphism decorativo; filete colorido de borda só quando codifica estado."
     ]
   }
 }
