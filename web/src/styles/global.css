@@ -170,7 +170,9 @@ ul { list-style: none; padding: 0; }
   border-color: var(--ink);
   box-shadow: 0 0 0 3px rgba(0, 9, 23, 0.1);
 }
-.input::placeholder, .textarea::placeholder { color: var(--faint); }
+/* Placeholder usa --muted (5.83:1), não --faint (3.07:1): texto legível ≥ 4.5:1.
+   --faint fica reservado a marcas decorativas / ícones. */
+.input::placeholder, .textarea::placeholder { color: var(--muted); }
 .textarea {
   font-family: var(--font-mono);
   font-size: 13px;
