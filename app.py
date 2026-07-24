@@ -1,17 +1,14 @@
 """Painel de Prospecção SDR — Norte Geradores (Streamlit).
 
 Rodar local:  python -m streamlit run app.py   → http://localhost:8501
-Login: senha em .env (APP_PASSWORD). Deploy: Streamlit Community Cloud (secrets).
+Acesso aberto (sem login). Deploy: Streamlit Community Cloud (secrets).
 """
 from __future__ import annotations
-
-import hmac
 
 import pandas as pd
 import streamlit as st
 
 from config import (
-    APP_PASSWORD,
     GOOGLE_PLACES_QUERIES,
     KEYWORDS_GERADOR,
     SCORE_MORNO,
@@ -30,33 +27,6 @@ TODAS_UFS = UF_PRIORITARIAS + UF_SECUNDARIAS + [
     "SP", "RJ", "MG", "ES", "PR", "SC", "RS", "GO", "DF", "CE", "PE",
     "PB", "RN", "AL", "SE", "PI",
 ]
-
-
-# --------------------------------------------------------------------------- #
-# Login (fail-closed, comparação em tempo constante)
-# --------------------------------------------------------------------------- #
-def checar_senha() -> bool:
-    if st.session_state.get("autenticado"):
-        return True
-    st.title("⚡ Prospecção SDR — Norte Geradores")
-    if not APP_PASSWORD:
-        st.error("Painel bloqueado: defina **APP_PASSWORD** no `.env` (local) ou em "
-                 "**Secrets** (Streamlit Cloud) para liberar o acesso.")
-        return False
-    senha = st.text_input("Senha de acesso", type="password")
-    if senha:
-        # .strip() tolera espaços colados no fim; .encode() compara bytes
-        # (evita erro com acento/aspas curvas coladas no secret).
-        if hmac.compare_digest(senha.strip().encode(), APP_PASSWORD.encode()):
-            st.session_state["autenticado"] = True
-            st.rerun()
-        else:
-            st.error("Senha incorreta.")
-    return False
-
-
-if not checar_senha():
-    st.stop()
 
 
 # --------------------------------------------------------------------------- #

@@ -8,24 +8,19 @@ Rodar prod:  uvicorn api:app --host 0.0.0.0 --port 8519
 """
 from __future__ import annotations
 
-import base64
-import hashlib
-import hmac
 import io
 import json
 import logging
 import os
-import time
 
 import pandas as pd
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from config import (
-    APP_PASSWORD,
     KEYWORDS_GERADOR,
     SCORE_MORNO,
     SCORE_QUENTE,
@@ -57,46 +52,8 @@ TODAS_UFS = UF_PRIORITARIAS + UF_SECUNDARIAS + [
 
 
 # --------------------------------------------------------------------------- #
-# Auth — token HMAC stateless (sobrevive a restart; segredo = APP_PASSWORD)
-# --------------------------------------------------------------------------- #
-_SECRET = (APP_PASSWORD or "").encode()
-
-
-def _make_token(horas: int = 12) -> str:
-    exp = int(time.time()) + horas * 3600
-    sig = base64.urlsafe_b64encode(
-        hmac.new(_SECRET, str(exp).encode(), hashlib.sha256).digest()
-    ).decode()
-    return f"{exp}.{sig}"
-
-
-def _token_valido(tok: str) -> bool:
-    try:
-        exp_str, sig = tok.split(".", 1)
-        esperado = base64.urlsafe_b64encode(
-            hmac.new(_SECRET, exp_str.encode(), hashlib.sha256).digest()
-        ).decode()
-        return hmac.compare_digest(sig, esperado) and int(exp_str) > time.time()
-    except Exception:                                   # noqa: BLE001
-        return False
-
-
-def exigir_auth(authorization: str = Header(default="")) -> None:
-    """Dependency: exige Bearer token válido. 503 se o painel não tem senha."""
-    if not APP_PASSWORD:
-        raise HTTPException(503, "Painel bloqueado: defina APP_PASSWORD no .env/Secrets.")
-    tok = authorization.removeprefix("Bearer ").strip()
-    if not _token_valido(tok):
-        raise HTTPException(401, "Sessão inválida ou expirada.")
-
-
-# --------------------------------------------------------------------------- #
 # Schemas de entrada
 # --------------------------------------------------------------------------- #
-class LoginIn(BaseModel):
-    senha: str
-
-
 class BuscaIn(BaseModel):
     fontes: list[str]
     ufs: list[str] | None = None
@@ -143,18 +100,8 @@ def _registros_para_df(leads: list[dict]) -> pd.DataFrame:
 # --------------------------------------------------------------------------- #
 # Rotas
 # --------------------------------------------------------------------------- #
-@app.post("/api/login")
-def login(body: LoginIn):
-    if not APP_PASSWORD:
-        raise HTTPException(503, "Painel bloqueado: defina APP_PASSWORD no .env/Secrets.")
-    # .strip() tolera espaços colados; compare_digest é tempo-constante.
-    if not hmac.compare_digest(body.senha.strip().encode(), APP_PASSWORD.encode()):
-        raise HTTPException(401, "Senha incorreta.")
-    return {"token": _make_token()}
-
-
 @app.get("/api/config")
-def get_config(_: None = Depends(exigir_auth)):
+def get_config():
     return {
         "fontes": [
             {"key": k, "label": v["label"], "descricao": v["descricao"]}
@@ -171,7 +118,7 @@ def get_config(_: None = Depends(exigir_auth)):
 
 
 @app.post("/api/buscar")
-def buscar(body: BuscaIn, _: None = Depends(exigir_auth)):
+def buscar(body: BuscaIn):
     fontes = [f for f in body.fontes if f in FONTES]
     if not fontes:
         raise HTTPException(400, "Selecione ao menos uma fonte válida.")
@@ -199,7 +146,7 @@ MAX_LEADS = 5000  # teto p/ payloads de export/Agendor (evita trabalho ilimitado
 
 
 @app.post("/api/exportar")
-def exportar(body: ExportIn, _: None = Depends(exigir_auth)):
+def exportar(body: ExportIn):
     if len(body.leads) > MAX_LEADS:
         raise HTTPException(413, f"Muitos leads (máx. {MAX_LEADS}).")
     df = _registros_para_df(body.leads)
@@ -217,7 +164,7 @@ def exportar(body: ExportIn, _: None = Depends(exigir_auth)):
 
 
 @app.post("/api/agendor")
-def agendor(body: AgendorIn, _: None = Depends(exigir_auth)):
+def agendor(body: AgendorIn):
     if len(body.leads) > MAX_LEADS:
         raise HTTPException(413, f"Muitos leads (máx. {MAX_LEADS}).")
     df = _registros_para_df(body.leads)
@@ -225,7 +172,7 @@ def agendor(body: AgendorIn, _: None = Depends(exigir_auth)):
 
 
 @app.post("/api/ccee/atualizar")
-def ccee_atualizar(_: None = Depends(exigir_auth)):
+def ccee_atualizar():
     total = ccee.atualizar_cache_aneel()
     return {"total": total, "ok": total > 0}
 

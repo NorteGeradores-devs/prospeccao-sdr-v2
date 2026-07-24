@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { api, getToken, clearToken, AuthError } from './api.js'
-import LoginScreen from './components/LoginScreen.jsx'
+import { api } from './api.js'
 import SearchConfig, { buildBusca } from './components/SearchConfig.jsx'
 import MetricsBand from './components/MetricsBand.jsx'
 import FiltersBar from './components/FiltersBar.jsx'
@@ -33,7 +32,6 @@ function defaultParams(cfg) {
 }
 
 export default function App() {
-  const [authed, setAuthed] = useState(() => !!getToken())
   const [config, setConfig] = useState(null)
   const [params, setParams] = useState(null)
 
@@ -60,9 +58,8 @@ export default function App() {
     setTimeout(() => setToasts((ts) => ts.filter((x) => x.id !== id)), 3600)
   }
 
-  // Carrega config ao autenticar
+  // Carrega config ao montar
   useEffect(() => {
-    if (!authed) return
     let vivo = true
     api.config()
       .then((cfg) => {
@@ -72,23 +69,15 @@ export default function App() {
         setCceeTotal(cfg.ccee_total || 0)
       })
       .catch((e) => {
-        if (e instanceof AuthError) { setAuthed(false) }
-        else addToast({ kind: 'error', title: 'Falha ao carregar', msg: e.message })
+        addToast({ kind: 'error', title: 'Falha ao carregar', msg: e.message })
       })
     return () => { vivo = false }
-  }, [authed])
+  }, [])
 
   useEffect(() => {
     const a = beacon(beaconRef.current)
     return () => a && a.pause()
   }, [config])
-
-  function logout() {
-    clearToken()
-    setAuthed(false)
-    setConfig(null)
-    setResultado(null)
-  }
 
   async function onBuscar(busca) {
     if (!busca.fontes.length) return
@@ -105,7 +94,6 @@ export default function App() {
       setFocusedId(leads.length ? leads[0]._id : null)
       if (!leads.length) addToast({ kind: 'info', title: 'Nenhum lead', msg: 'Ajuste as fontes ou a região.' })
     } catch (e) {
-      if (e instanceof AuthError) return logout()
       addToast({ kind: 'error', title: 'Busca falhou', msg: e.message })
     } finally {
       setBuscando(false)
@@ -121,7 +109,6 @@ export default function App() {
         ? { kind: 'success', title: 'Base CCEE atualizada', msg: `${r.total} consumidores livres.` }
         : { kind: 'error', title: 'Falhou', msg: 'A ANEEL não respondeu agora. Tente mais tarde.' })
     } catch (e) {
-      if (e instanceof AuthError) return logout()
       addToast({ kind: 'error', title: 'Erro', msg: e.message })
     } finally {
       setCceeBusy(false)
@@ -185,7 +172,6 @@ export default function App() {
       await api.exportar(leads, formato)
       addToast({ kind: 'success', title: 'Exportado', msg: `${leads.length} leads (${formato.toUpperCase()}).` })
     } catch (e) {
-      if (e instanceof AuthError) return logout()
       addToast({ kind: 'error', title: 'Export falhou', msg: e.message })
     }
   }
@@ -197,7 +183,6 @@ export default function App() {
       if (r.ok) addToast({ kind: 'success', title: 'Enviado ao Agendor', msg: `Criados: ${r.criados} · Falhas: ${r.falhas}` })
       else addToast({ kind: 'error', title: 'Agendor', msg: r.erro || 'Falha no envio.' })
     } catch (e) {
-      if (e instanceof AuthError) return logout()
       addToast({ kind: 'error', title: 'Agendor falhou', msg: e.message })
     }
   }
@@ -231,7 +216,6 @@ export default function App() {
   }, [drawerLead, focusedId])
 
   // ---- render ----
-  if (!authed) return <LoginScreen onAuthed={() => setAuthed(true)} />
   if (!config || !params) return <div className="empty" style={{ minHeight: '100vh' }}><span className="mono-sm">Carregando…</span></div>
 
   const resumoBusca = `${params.fontes.map((f) => f.toUpperCase()).join(' · ')} · ${params.ufs.length} UF`
@@ -249,7 +233,6 @@ export default function App() {
           {resultado && !mostrarConfig && (
             <button className="btn btn-sm btn-outline-dark" onClick={() => setMostrarConfig(true)} type="button">Nova busca</button>
           )}
-          <button className="logout" onClick={logout} type="button">Sair</button>
         </div>
       </header>
 

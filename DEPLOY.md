@@ -26,12 +26,11 @@ gh repo create NorteGeradores-devs/prospeccao-sdr --private --source . --remote 
 3. Advanced settings → Python **3.12/3.13**.
 4. Repo privado exige 2ª autorização: **Settings → Linked accounts → Source control → Connect**.
 
-## 3. Secrets (obrigatório — senão o painel fica bloqueado)
+## 3. Secrets (chaves das fontes — todas opcionais)
 Em **Settings → Secrets**, cole (formato TOML, veja `.streamlit/secrets.toml.example`):
 
 ```toml
-APP_PASSWORD = "uma-senha-forte"
-# opcionais:
+# todas opcionais — cada fonte degrada com elegância sem a sua chave:
 GOOGLE_PLACES_API_KEY = ""
 CNPJ_SEARCH_TOKEN = ""
 SYMPLA_TOKEN = ""
@@ -39,10 +38,11 @@ AGENDOR_TOKEN = ""
 ```
 
 O app lê tudo via `os.getenv`/`st.secrets` (config.py) — não precisa de código extra.
+O painel **não tem mais senha** (`APP_PASSWORD` foi removido) — veja a seção 4.
 
 ## 4. Pós-deploy (segurança) — NÃO PULAR
-- **Restringir viewers por e-mail**: Settings → Sharing → adicionar só os e-mails da equipe. A URL é pública; a senha é a 2ª barreira, não a única.
-- Usar **senha forte** em `APP_PASSWORD` (não reaproveite senhas de outros apps internos).
+- ⚠️ **O painel agora abre sem senha.** Qualquer um que alcançar a URL usa o console — inclusive **enviar leads ao Agendor** (escreve no CRM). A barreira de acesso passou a ser **exclusivamente** a lista de viewers.
+- **Restringir viewers por e-mail** (Settings → Sharing → só os e-mails da equipe) é agora a **única** barreira — não é mais opcional. A URL é pública.
 - Se algum token vazar no git, ele é permanente no histórico — a defesa é nunca commitar (`.gitignore`) + repo privado.
 
 ## 5. Automação (opcional)

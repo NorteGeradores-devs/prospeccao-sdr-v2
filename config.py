@@ -37,9 +37,8 @@ GOOGLE_PLACES_API_KEY = _secret("GOOGLE_PLACES_API_KEY")
 SYMPLA_TOKEN = _secret("SYMPLA_TOKEN")
 CNPJ_SEARCH_TOKEN = _secret("CNPJ_SEARCH_TOKEN")                    # CNPJá (opcional)
 AGENDOR_TOKEN = _secret("AGENDOR_TOKEN")
-# Sem senha no .env/secrets o painel fica BLOQUEADO (fail-closed). Não há senha
-# padrão embutida no código — defina APP_PASSWORD para liberar o acesso.
-APP_PASSWORD = _secret("APP_PASSWORD")
+# Obs.: o painel não tem mais senha (acesso aberto). APP_PASSWORD foi removido —
+# a barreira de acesso agora é de rede/deploy (viewers por e-mail, rede local etc.).
 
 # ERP SISLOC (SQL Server, somente leitura) — fonte de clientes existentes.
 # Reaproveita o usuário Leitor_norte já usado pela Preventiva. A fonte degrada

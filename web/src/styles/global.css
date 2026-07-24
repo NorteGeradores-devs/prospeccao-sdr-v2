@@ -91,8 +91,7 @@ ul { list-style: none; padding: 0; }
 }
 /* Sobre superfícies escuras (rail/seleção), o contorno preto some — usa branco. */
 .toprail :focus-visible,
-.selection-bar :focus-visible,
-.login-brand :focus-visible { outline-color: #fff; }
+.selection-bar :focus-visible { outline-color: #fff; }
 
 /* ---------- helpers ---------- */
 .num { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
@@ -263,11 +262,6 @@ ul { list-style: none; padding: 0; }
   border: 1px solid rgba(255,255,255,0.14); border-radius: var(--r-md);
   padding: 3px var(--sp-3); display: inline-flex; align-items: center; gap: 6px;
 }
-.logout {
-  color: var(--on-chrome-muted); font-size: 13px; padding: 6px 8px; border-radius: var(--r-md);
-}
-.logout:hover { background: rgba(255,255,255,0.08); color: #fff; }
-
 .beacon {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--yellow); box-shadow: 0 0 0 3px rgba(255,241,0,0.18);
@@ -276,35 +270,6 @@ ul { list-style: none; padding: 0; }
 
 .main { flex: 1; }
 .container { max-width: 1180px; margin: 0 auto; padding: var(--sp-7) var(--sp-6) var(--sp-10); }
-
-/* =========================================================================
-   Login
-   ========================================================================= */
-.login { min-height: 100vh; display: grid; grid-template-columns: 2fr 3fr; }
-.login-brand {
-  background: var(--chrome); color: var(--on-chrome);
-  padding: var(--sp-10) var(--sp-9);
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative; overflow: hidden;
-}
-.login-brand .river {
-  position: absolute; inset: 0; opacity: 0.06; pointer-events: none;
-}
-.login-brand .wordmark {
-  font-family: var(--font-display); font-weight: 700; font-size: 22px; color: #fff;
-  display: flex; align-items: center; gap: var(--sp-3); position: relative;
-}
-.login-brand .beacon-lg { width: 12px; height: 12px; box-shadow: 0 0 0 5px rgba(255,241,0,0.16); }
-.login-brand .tagline { color: var(--on-chrome-muted); font-size: 18px; line-height: 1.5; max-width: 40ch; position: relative; }
-.login-brand .foot { font-family: var(--font-mono); font-size: 11px; color: var(--on-chrome-muted); position: relative; }
-
-.login-form { display: flex; align-items: center; justify-content: center; padding: var(--sp-8); }
-.login-card { width: 100%; max-width: 380px; }
-.login-card h1 { font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 32px; color: var(--ink); letter-spacing: -0.01em; }
-.login-card .sub { color: var(--muted); margin-top: var(--sp-2); font-size: 14px; }
-.login-card form { margin-top: var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-4); }
-.login-card .hint { font-size: 12px; color: var(--muted); }
-.login-card .error { color: var(--danger); font-size: 13px; }
 
 /* =========================================================================
    Search config

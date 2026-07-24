@@ -54,7 +54,7 @@ recursos extras (veja `.env.example`).
 python -m streamlit run app.py     # abre http://localhost:8501
 ```
 
-Login com a senha do `.env` (`APP_PASSWORD`). Na barra lateral: escolha as
+O painel abre direto, sem login. Na barra lateral: escolha as
 fontes, os estados e clique em **Buscar leads**. A tabela vem ordenada por
 score, com filtros por temperatura/fonte, download em Excel/CSV e botão para
 **enviar ao Agendor**.
@@ -127,8 +127,9 @@ Fluxo: **buscar** (fontes em paralelo lógico) → **deduplicar** (mescla por CN
 ## Deploy (Streamlit Community Cloud)
 
 Mesmo padrão do BI de Faturamento: repositório privado + `st.secrets`. Coloque
-as chaves em **Settings → Secrets** (`APP_PASSWORD`, `AGENDOR_TOKEN`, etc.) e
-**restrinja os viewers por e‑mail** — a URL é pública.
+as chaves em **Settings → Secrets** (`AGENDOR_TOKEN`, etc.). O painel **não tem
+mais senha** — como a URL é pública, **restringir os viewers por e‑mail passa a
+ser a única barreira de acesso**.
 
 ---
 
